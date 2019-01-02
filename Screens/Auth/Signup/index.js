@@ -5,6 +5,7 @@ import { StyleSheet, View, AsyncStorage } from "react-native";
 import { Input, Button } from "react-native-elements";
 
 import firebase from "../../../config/firebase";
+const database = firebase.database().ref();
 
 export class SignUp extends Component {
   constructor() {
@@ -38,6 +39,14 @@ export class SignUp extends Component {
         .auth()
         .createUserWithEmailAndPassword(email, password)
         .then(success => {
+          let email = success.user.email;
+          let uid = success.user.uid;
+          database.child("users").push({
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            uid: uid
+          });
           AsyncStorage.setItem("userLoggedIn", "SignedUp");
           this.props.navigation.navigate("App");
         })
