@@ -1,0 +1,30 @@
+{
+  "expo": {
+    "name": "Q App",
+    "slug": "qapp",
+    "privacy": "public",
+    "sdkVersion": "31.0.0",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "platforms": [
+      "android"
+    ],
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "android": {
+      "package": "com.zendar.QApp"
+    },
+    "description": "",
+    "githubUrl": "https://github.com/mildk123/QApp_EXPO"
+  }
+}
