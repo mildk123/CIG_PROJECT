@@ -61,7 +61,6 @@ class Authentication extends Component {
           <Button
             onPress={() => this.props.navigation.navigate('Login')}
             title="Login"
-            iconRight
             icon={<Icon name="user" size={23} color="white" />}
             buttonStyle={{
               backgroundColor: "#E22929",

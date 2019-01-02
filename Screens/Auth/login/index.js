@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 
+import firebase from '../../../config/firebase'
+
 import Icon from "react-native-vector-icons/FontAwesome";
 import { StyleSheet, View, AsyncStorage } from "react-native";
 import { Input, Button } from "react-native-elements";
@@ -17,8 +19,23 @@ export class SignIn extends Component {
   };
 
   _onPress = async () => {
-    await AsyncStorage.setItem("userToken", "LoggedIn");
-    this.props.navigation.navigate("App");
+    let email = this.state.email;
+    let password = this.state.password;
+    if ((email && password) !== null) {
+      firebase.auth().signInWithEmailAndPassword(email, password)
+        .then(success => {
+          AsyncStorage.setItem("userLoggedIn", "LoggedIn");
+          this.props.navigation.navigate("App");
+        })
+        .catch(error => {
+          // Handle Errors here.
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          alert(errorCode, errorMessage);
+        });
+    } else {
+      alert(`please enter correct information`);
+    }
   };
 
   render() {
@@ -30,22 +47,28 @@ export class SignIn extends Component {
             labelStyle={{
               margin: 5,
               fontSize: 22,
-              fontWeight: '300',
+              fontWeight: "300",
               color: "#E22929",
               fontStyle: "italic"
+            }}
+            onChangeText={email => {
+              this.setState({ email: email });
             }}
             placeholder="abc@domain.com"
             leftIcon={<Icon size={20} name="envelope-o" />}
           />
           <Input
+            label="Password"
             labelStyle={{
               margin: 5,
               fontSize: 22,
-              fontWeight: '300',
+              fontWeight: "300",
               color: "#E22929",
               fontStyle: "italic"
             }}
-            label="Password"
+            onChangeText={password => {
+              this.setState({ password: password });
+            }}
             placeholder="********"
             leftIcon={<Icon size={20} name="lock" />}
           />
