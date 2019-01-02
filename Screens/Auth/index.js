@@ -1,49 +1,50 @@
 import React, { Component } from "react";
 import { StyleSheet, View, Image } from "react-native";
-import { createStackNavigator } from "react-navigation";
 
-import firebase from "../../config/firebase";
+import { createStackNavigator } from "react-navigation";
 
 import { Button } from "react-native-elements";
 import Icon from "react-native-vector-icons/AntDesign";
 
-import { AsyncStorage } from "react-native";
+import Login from './login'
+import Signup from './Signup'
 
-const database = firebase.database().ref();
 
 class Authentication extends Component {
   constructor() {
     super();
-
+    
     this.state = {};
   }
   static navigationOptions = {
     header: null
   };
+  
+  // const database = firebase.database().ref();
+  // _toHomePage = async () => {
+  //   firebase.auth().onAuthStateChanged(user => {
+  //     if (user) {
+  //       let username = user.displayName;
+  //       let email = user.email;
+  //       let photoURL = user.photoURL;
+  //       let uid = user.uid;
 
-  toHomePage = async () => {
-    firebase.auth().onAuthStateChanged(user => {
-      if (user) {
-        let username = user.displayName;
-        let email = user.email;
-        let photoURL = user.photoURL;
-        let uid = user.uid;
+  //       database.child("users/" + uid).set(
+  //         {
+  //           username,
+  //           email,
+  //           photoURL,
+  //           uid
+  //         },
+  //         () => {
+  //           this.props.navigation.navigate("App");
+  //         }
+  //       );
+  //     }
+  //   });
+  // };
 
-        database.child("users/" + uid).set(
-          {
-            username,
-            email,
-            photoURL,
-            uid
-          },
-          () => {
-            this.props.navigation.navigate("App");
-          }
-        );
-      }
-    });
-  };
-
+ 
 
 
   render() {
@@ -58,7 +59,7 @@ class Authentication extends Component {
 
         <View style={styles.btnContainer}>
           <Button
-            onPress={() => this.loginFB()}
+            onPress={() => this.props.navigation.navigate('Login')}
             title="Login"
             iconRight
             icon={<Icon name="user" size={23} color="white" />}
@@ -73,7 +74,7 @@ class Authentication extends Component {
             }}
           />
            <Button
-            onPress={() => this.loginFB()}
+            onPress={() => this.props.navigation.navigate('Signup')}
             title="Create Account"
             iconRight
             icon={<Icon name="adduser" size={23} color="white" />}
@@ -96,7 +97,9 @@ class Authentication extends Component {
 }
 
 export default (AuthStackNavigator = createStackNavigator({
-  Auth: Authentication
+  Auth: Authentication,
+  Login: Login,
+  Signup : Signup
 }));
 
 const styles = StyleSheet.create({
