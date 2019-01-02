@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { StyleSheet, View, Image } from "react-native";
 import { createStackNavigator } from "react-navigation";
 
-import { Facebook } from "expo";
 import firebase from "../../config/firebase";
 
 import { Button } from "react-native-elements";
@@ -45,20 +44,7 @@ class Authentication extends Component {
     });
   };
 
-  loginFB = async () => {
-    const { type, token } = await Facebook.logInWithReadPermissionsAsync(
-      "2484863974917731",
-      { permissions: ["public_profile"] }
-    );
 
-    if (type === "success" && token) {
-      const credential = firebase.auth.FacebookAuthProvider.credential(token);
-
-      await firebase.auth().signInAndRetrieveDataWithCredential(credential);
-      AsyncStorage.setItem("userLoggedIn", "Khan");
-      this.toHomePage();
-    }
-  };
 
   render() {
     return (
@@ -75,16 +61,34 @@ class Authentication extends Component {
             onPress={() => this.loginFB()}
             title="Login"
             iconRight
-            icon={<Icon name="facebook-square" size={20} color="white" />}
+            icon={<Icon name="user" size={23} color="white" />}
             buttonStyle={{
-              backgroundColor: "#3C5A99",
-              width: 250,
-              height: 55,
-              borderColor: "transparent",
-              borderWidth: 0,
-              borderRadius: 5
+              backgroundColor: "#E22929",
+              width: 220,
+              padding: 10,
+              // height: 55,
+              // borderColor: "transparent",
+              // borderWidth: 0,
+              // borderRadius: 5
             }}
           />
+           <Button
+            onPress={() => this.loginFB()}
+            title="Create Account"
+            iconRight
+            icon={<Icon name="adduser" size={23} color="white" />}
+            buttonStyle={{
+              backgroundColor: "#E79E2F",
+              width: 220,
+              padding: 10,
+              // height: 55,
+              // borderColor: "transparent",
+              // borderWidth: 0,
+              // borderRadius: 5
+            }}
+          />
+
+
         </View>
       </View>
     );
@@ -99,7 +103,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#ffffff",
-    justifyContent: "flex-start"
+    justifyContent: 'space-between'
   },
   imgContainer: {
     maxHeight: "100%",
@@ -112,10 +116,10 @@ const styles = StyleSheet.create({
     maxWidth: 360
   },
   btnContainer: {
-    height: 150,
-    padding: 25,
+    // height: 150,
+    // padding: 25,
     flexDirection: "row",
-    alignItems: "flex-end",
-    justifyContent: "space-evenly"
+    justifyContent: 'space-around' ,
+    // alignContent: 'flex-start'
   }
 });
