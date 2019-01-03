@@ -1,12 +1,10 @@
 import React, { Component } from "react";
 import { createStackNavigator } from "react-navigation";
-import { StyleSheet, View, Image } from "react-native";
+import { StyleSheet, View, Text } from "react-native";
 
-import { Button } from "react-native-elements";
-import Icon from "react-native-vector-icons/Ionicons";
 import Header from "../../Helper/Header";
 
-
+import { Content, Card, CardItem, Body } from "native-base";
 
 class Homescreen extends Component {
   static navigationOptions = {
@@ -20,34 +18,45 @@ class Homescreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-         <Header
-            headerColor="#C00000"
-            icon={"menu"}
-            title={"Shop"}
-            hasTabs={false}
-            searchBtn={true}
-            favBtn={false}
-            threeDots={false}
-            {...this.props}
-          />
-
+        <Header
+          headerColor="#C00000"
+          icon={"menu"}
+          title={"Shop"}
+          hasTabs={false}
+          searchBtn={true}
+          favBtn={false}
+          threeDots={false}
+          {...this.props}
+        />
+        <Content>
+          <View>
+            <Card>
+              <CardItem footer bordered>
+                <Body>
+                  <Text>//Your text here</Text>
+                </Body>
+              </CardItem>
+            </Card>
+          </View>
+          <View>
+            <Text>123</Text>
+          </View>
+        </Content>
       </View>
     );
   }
 }
 
-
-export default HomeStackNavigator =  createStackNavigator({
-  Homescreen : Homescreen,
-});
-
+export default (HomeStackNavigator = createStackNavigator({
+  Homescreen: Homescreen
+}));
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#ffffff",
     justifyContent: "flex-start"
-  },
+  }
   // imgContainer: {
   //   maxHeight: "100%",
   //   justifyContent: "center",
