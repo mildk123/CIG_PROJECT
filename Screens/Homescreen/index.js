@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import { createStackNavigator } from "react-navigation";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text, Image } from "react-native";
 
 import Header from "../../Helper/Header";
 
-import { Content, Card, CardItem, Body } from "native-base";
+import Carousel from "react-native-snap-carousel";
+import { Content } from "native-base";
 
 class Homescreen extends Component {
   static navigationOptions = {
@@ -30,13 +31,7 @@ class Homescreen extends Component {
         />
         <Content>
           <View>
-            <Card>
-              <CardItem footer bordered>
-                <Body>
-                  <Text>//Your text here</Text>
-                </Body>
-              </CardItem>
-            </Card>
+            <Carousel layout={"default"} layoutCardOffset={`18`} />
           </View>
           <View>
             <Text>123</Text>
