@@ -20,46 +20,17 @@ class Homescreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.imgContainer}>
-          <Image
-            style={styles.picSize}
-            source={require("../../assets/icon.png")}
-          />
-        </View>
-
-        <View style={styles.btnContainer}>
-
-          <Button
-            onPress={() => this.moveTo("Company")}
-            title="Are you a company?"
-            icon={<Icon name="ios-business" size={20} color="white" />}
-            buttonStyle={{
-              backgroundColor: "#00BF8C",
-              width: '100%',
-              padding: 10,
-              maxWidth: 620,
-              borderColor: "transparent",
-              borderWidth: 0,
-              borderRadius: 5
-            }}
+         <Header
+            headerColor="#C00000"
+            icon={"menu"}
+            title={"Shop"}
+            hasTabs={false}
+            searchBtn={true}
+            favBtn={false}
+            threeDots={false}
+            {...this.props}
           />
 
-          <Button
-            onPress={() => this.moveTo("User")}
-            title="Are you finding/waiting for tokens?"
-            icon={<Icon name="md-person" size={20} color="white" />}
-            buttonStyle={{
-              backgroundColor: "#00BF8C",
-              width: '100%',
-              padding: 10,
-              maxWidth: 620,
-              borderColor: "transparent",
-              borderWidth: 0,
-              borderRadius: 5
-            }}
-          />
-
-        </View>
       </View>
     );
   }
@@ -77,19 +48,19 @@ const styles = StyleSheet.create({
     backgroundColor: "#ffffff",
     justifyContent: "flex-start"
   },
-  imgContainer: {
-    maxHeight: "100%",
-    justifyContent: "center",
-    alignItems: "center"
-  },
-  picSize: {
-    maxHeight: 360,
-    maxWidth: 360
-  },
-  btnContainer: {
-    height: 120,
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "space-between"
-  }
+  // imgContainer: {
+  //   maxHeight: "100%",
+  //   justifyContent: "center",
+  //   alignItems: "center"
+  // },
+  // picSize: {
+  //   maxHeight: 360,
+  //   maxWidth: 360
+  // },
+  // btnContainer: {
+  //   height: 120,
+  //   flexDirection: "column",
+  //   alignItems: "center",
+  //   justifyContent: "space-between"
+  // }
 });
