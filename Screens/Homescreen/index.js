@@ -65,6 +65,7 @@ class Homescreen extends Component {
           threeDots={false}
           {...this.props}
         />
+        <Text>Cigratte Brands</Text>
 
         <View
           style={{
@@ -84,15 +85,12 @@ class Homescreen extends Component {
             itemWidth={styles.itemWidth.width}
             hasParallaxImages={true}
             enableSnap={true}
-            firstItem={1}
+            firstItem={0}
             useScrollView={true}
             vertical={false}
           />
 
-          {/* <Image
-            style={{ width: 150, height: 150 }}
-            source={{ uri: "https://i.imgur.com/sNam9iJ.jpg" }}
-          /> */}
+         
         </View>
       </View>
     );
