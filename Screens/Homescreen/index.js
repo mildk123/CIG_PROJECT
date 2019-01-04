@@ -65,7 +65,7 @@ class Homescreen extends Component {
           threeDots={false}
           {...this.props}
         />
-        <Text>Cigratte Brands</Text>
+        <Text>Cigratte </Text>
 
         <View
           style={{
