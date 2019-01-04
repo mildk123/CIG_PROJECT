@@ -4,17 +4,53 @@ import { StyleSheet, View, Text, Image } from "react-native";
 
 import Header from "../../Helper/Header";
 
-import Carousel from "react-native-snap-carousel";
-import { Content } from "native-base";
+import Carousel, { ParallaxImage } from "react-native-snap-carousel";
 
 class Homescreen extends Component {
+  constructor() {
+    super();
+    this.state = {
+      entries: [
+        {
+          title: "heelo",
+          thumbnail: require("../../assets/images/bnh1.jpg")
+        },
+        {
+          title: "badshah",
+          thumbnail: require("../../assets/images/bnh2.jpg")
+        },
+        {
+          title: "khan",
+          thumbnail: require("../../assets/images/bnh1.jpg")
+        }
+      ]
+    };
+  }
+
   static navigationOptions = {
     header: null
   };
 
-  moveTo = name => {
-    this.props.navigation.navigate(name);
-  };
+  _renderItem({ item, index }, parallaxProps) {
+    return (
+      <View style={styles.slide}>
+        {/* <Image source={item.thumbnail} /> */}
+        <ParallaxImage
+          source={require("../../assets/images/bnh1.jpg")}
+          style={{ width: 100, height: 100 }}
+          parallaxFactor={0.4}
+          {...parallaxProps}
+        />
+        <Image
+          source={require("../../assets/images/bnh1.jpg")}
+          style={{ width: 100, height: 100 }}
+        />
+        <Text style={styles.title} numberOfLines={2}>
+          {item.title}
+        </Text>
+      </View>
+    );
+  }
 
   render() {
     return (
@@ -29,14 +65,35 @@ class Homescreen extends Component {
           threeDots={false}
           {...this.props}
         />
-        <Content>
-          <View>
-            <Carousel layout={"default"} layoutCardOffset={`18`} />
-          </View>
-          <View>
-            <Text>123</Text>
-          </View>
-        </Content>
+
+        <View
+          style={{
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center"
+          }}
+        >
+          <Carousel
+            layout={"default"}
+            ref={c => {
+              this._carousel = c;
+            }}
+            data={this.state.entries}
+            renderItem={this._renderItem}
+            sliderWidth={styles.sliderWidth.width}
+            itemWidth={styles.itemWidth.width}
+            hasParallaxImages={true}
+            enableSnap={true}
+            firstItem={1}
+            useScrollView={true}
+            vertical={false}
+          />
+
+          {/* <Image
+            style={{ width: 150, height: 150 }}
+            source={{ uri: "https://i.imgur.com/sNam9iJ.jpg" }}
+          /> */}
+        </View>
       </View>
     );
   }
@@ -49,22 +106,27 @@ export default (HomeStackNavigator = createStackNavigator({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#ffffff",
-    justifyContent: "flex-start"
+    backgroundColor: "#ffffff"
+  },
+
+  sliderWidth: {
+    width: 450
+  },
+  itemWidth: {
+    width: 320
+  },
+
+  slide: {
+    borderRadius: 35,
+    padding: 0,
+    backgroundColor: "pink"
+  },
+  image: {
+    width: 300,
+    height: 300
+  },
+
+  title: {
+    fontSize: 24
   }
-  // imgContainer: {
-  //   maxHeight: "100%",
-  //   justifyContent: "center",
-  //   alignItems: "center"
-  // },
-  // picSize: {
-  //   maxHeight: 360,
-  //   maxWidth: 360
-  // },
-  // btnContainer: {
-  //   height: 120,
-  //   flexDirection: "column",
-  //   alignItems: "center",
-  //   justifyContent: "space-between"
-  // }
 });
