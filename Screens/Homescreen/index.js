@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import { createStackNavigator } from "react-navigation";
-import { StyleSheet, View, Text, Image } from "react-native";
+import { StyleSheet, View, Image } from "react-native";
+import { Dimensions, ScrollView } from "react-native";
 
 import Header from "../../Helper/Header";
 
-import Carousel, { ParallaxImage } from "react-native-snap-carousel";
+import Carousel from "react-native-snap-carousel";
+import {  Card, CardItem, Text, Body } from "native-base";
 
 class Homescreen extends Component {
   constructor() {
@@ -33,28 +35,22 @@ class Homescreen extends Component {
 
   _renderItem({ item, index }, parallaxProps) {
     return (
-      <View style={styles.slide}>
-        {/* <Image source={item.thumbnail} /> */}
-        <ParallaxImage
-          source={require("../../assets/images/bnh1.jpg")}
-          style={{ width: 100, height: 100 }}
-          parallaxFactor={0.4}
-          {...parallaxProps}
-        />
-        <Image
-          source={require("../../assets/images/bnh1.jpg")}
-          style={{ width: 100, height: 100 }}
-        />
-        <Text style={styles.title} numberOfLines={2}>
-          {item.title}
-        </Text>
-      </View>
+      <Card style={styles.cardMain}>
+        <CardItem cardBody style={styles.cardBody} bordered={false}>
+          <Body>
+            <Image source={item.thumbnail} style={styles.image} />
+          </Body>
+        </CardItem>
+        <CardItem footer style={styles.cardFooter}>
+          <Text style={styles.title}>{item.title}</Text>
+        </CardItem>
+      </Card>
     );
   }
 
   render() {
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <Header
           headerColor="#C00000"
           icon={"menu"}
@@ -65,20 +61,11 @@ class Homescreen extends Component {
           threeDots={false}
           {...this.props}
         />
-        <Text>Cigratte Brands</Text>
 
         <View
-          style={{
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center"
-          }}
         >
           <Carousel
             layout={"default"}
-            ref={c => {
-              this._carousel = c;
-            }}
             data={this.state.entries}
             renderItem={this._renderItem}
             sliderWidth={styles.sliderWidth.width}
@@ -89,10 +76,44 @@ class Homescreen extends Component {
             useScrollView={true}
             vertical={false}
           />
-
-         
+          <Carousel
+            layout={"default"}
+            data={this.state.entries}
+            renderItem={this._renderItem}
+            sliderWidth={styles.sliderWidth.width}
+            itemWidth={styles.itemWidth.width}
+            hasParallaxImages={true}
+            enableSnap={true}
+            firstItem={0}
+            useScrollView={true}
+            vertical={false}
+          />
+          <Carousel
+            layout={"default"}
+            data={this.state.entries}
+            renderItem={this._renderItem}
+            sliderWidth={styles.sliderWidth.width}
+            itemWidth={styles.itemWidth.width}
+            hasParallaxImages={true}
+            enableSnap={true}
+            firstItem={0}
+            useScrollView={true}
+            vertical={false}
+          />
+          <Carousel
+            layout={"default"}
+            data={this.state.entries}
+            renderItem={this._renderItem}
+            sliderWidth={styles.sliderWidth.width}
+            itemWidth={styles.itemWidth.width}
+            hasParallaxImages={true}
+            enableSnap={true}
+            firstItem={0}
+            useScrollView={true}
+            vertical={false}
+          />
         </View>
-      </View>
+      </ScrollView>
     );
   }
 }
@@ -108,23 +129,35 @@ const styles = StyleSheet.create({
   },
 
   sliderWidth: {
-    width: 450
+    width: Dimensions.get("window").width
   },
   itemWidth: {
-    width: 320
+    width: Dimensions.get("window").width - 120
   },
 
-  slide: {
-    borderRadius: 35,
-    padding: 0,
-    backgroundColor: "pink"
+  cardMain: {
+    borderRadius: 16
+  },
+  cardBody: {
+    borderTopLeftRadius: 16,
+    borderTopRightRadius: 16,
+    padding: 27,
+    height: Dimensions.get("window").height * 0.24
   },
   image: {
-    width: 300,
-    height: 300
+    width: 250,
+    height: Dimensions.get("window").height * 0.23
+  },
+
+  cardFooter: {
+    borderBottomLeftRadius: 16,
+    borderBottomRightRadius: 16,
+    backgroundColor: '#C00000',
   },
 
   title: {
-    fontSize: 24
+    margin: 5,
+    color : 'white',
+    fontSize: Dimensions.get("window").width * 0.05
   }
 });
