@@ -34,8 +34,10 @@ class AddProduct extends Component {
   imageSelect = async pic => {
     // let result = await ImagePicker.launchCameraAsync()
     let result = await ImagePicker.launchImageLibraryAsync({
-         allowsEditing: true,
-        aspect: [4, 3],
+        allowsEditing: true,
+        mediaTypes: 'Images',
+        quality: 1,
+        aspect: [16, 9]
     });
 
     if (!result.cancelled) {
@@ -52,10 +54,9 @@ class AddProduct extends Component {
   next = async () => {
     let productName = this.state.productName;
     let image = this.state.pic1
-    console.log(image)
 
     if (productName) {
-      let storageRef = firebase.storage().refFromURL(image);
+      let storageRef = firebase.storage().ref(image);
 
       storageRef.child("Products").child("cigarettes").put()
         .then(snapshot => {

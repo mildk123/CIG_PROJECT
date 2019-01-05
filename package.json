@@ -16,11 +16,9 @@
     "firebase": "^5.7.0",
     "native-base": "^2.8.1",
     "react": "16.5.0",
-    "react-images-upload": "^1.2.5",
     "react-native": "https://github.com/expo/react-native/archive/sdk-31.0.0.tar.gz",
     "react-native-easy-grid": "^0.2.0",
     "react-native-elements": "^1.0.0-beta7",
-    "react-native-image-picker": "^0.27.2",
     "react-native-maps-directions": "^1.6.0",
     "react-native-snap-carousel": "^3.7.5",
     "react-navigation": "^2.18.2"
