@@ -1,19 +1,13 @@
 import React, { Component } from "react";
-
 import { StyleSheet, View, TouchableHighlight } from "react-native";
 
-import {
-  Container,
-  Item,
-  Input,
-  Icon,
-  Button,
-  Thumbnail,
-  Text
-} from "native-base";
+import {Container,Item,Input,Icon,Button,Thumbnail,Text } from "native-base";
 
 import Header from "../../Helper/Header";
-import { ImagePicker } from "expo";
+
+// import { ImagePicker } from "expo";
+
+import {ImagePicker} from "react-native-image-crop-picker";
 
 import firebase from "../../config/firebase";
 const database = firebase.database().ref();
@@ -21,69 +15,24 @@ const database = firebase.database().ref();
 class AddProduct extends Component {
   constructor() {
     super();
-
-    this.state = {
-      isTimePickerVisible: false
-    };
+    this.state = { picture: null };
   }
-
   static navigationOptions = {
     header: null
   };
 
-  imageSelect = async pic => {
-    // let result = await ImagePicker.launchCameraAsync()
-    let result = await ImagePicker.launchImageLibraryAsync({
-        allowsEditing: true,
-        mediaTypes: 'Images',
-        quality: 1,
-        aspect: [16, 9]
+  selectImage = async () => {
+    ImagePicker.openPicker({
+      width: 300,
+      height: 400,
+      cropping: true
+    }).then(image => {
+      console.log(image);
     });
-
-    if (!result.cancelled) {
-        console.log(result)
-      await this.setState({
-        [pic]: result.uri,
-        pictures: {
-          [pic]: result.uri
-        }
-      });
-    }
-  };
-
-  next = async () => {
-    let productName = this.state.productName;
-    let image = this.state.pic1
-
-    if (productName) {
-      let storageRef = firebase.storage().ref(image);
-
-      storageRef.child("Products").child("cigarettes").put()
-        .then(snapshot => {
-          return snapshot.ref.getDownloadURL();
-        })
-        .then(downloadURL => {
-          database.child('Products').child('cigarettes').update(
-            {
-                productName: productName,
-                picture :  downloadURL
-            },
-            () => {
-            }
-          );
-          return downloadURL;
-        })
-        .catch(error => {
-          alert(error.message);
-        });
-      
-    } else {
-      alert("Please fill all the required information.");
-    }
   };
 
   render() {
-    const { pic1 } = this.state;
+    const { picture } = this.state;
     return (
       <Container>
         <Header
@@ -114,12 +63,12 @@ class AddProduct extends Component {
             <View
               style={{ flexDirection: "row", justifyContent: "space-evenly" }}
             >
-              <TouchableHighlight onPress={() => this.imageSelect("pic1")}>
+              <TouchableHighlight onPress={this.selectImage}>
                 <Thumbnail
                   large
                   source={
-                    pic1
-                      ? { uri: pic1 }
+                    picture
+                      ? { uri: picture }
                       : require("../../assets/placeholder/person_place.png")
                   }
                 />
