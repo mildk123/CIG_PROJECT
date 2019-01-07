@@ -13,7 +13,7 @@ import {
 
 import Header from "../../Helper/Header";
 
-import { Constants, ImagePicker, Permissions } from 'expo';
+import { Constants, ImagePicker, Permissions } from "expo";
 
 import firebase from "../../config/firebase";
 const database = firebase.database().ref();
@@ -21,11 +21,16 @@ const database = firebase.database().ref();
 class AddProduct extends Component {
   constructor() {
     super();
-    this.state = { picture: null };
+    this.state = {
+      productName: null,
+      selectedImage: null
+    };
   }
+
   static navigationOptions = {
     header: null
   };
+
   async componentDidMount() {
     await Permissions.askAsync(Permissions.CAMERA_ROLL);
     await Permissions.askAsync(Permissions.CAMERA);
@@ -34,45 +39,54 @@ class AddProduct extends Component {
   selectImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       allowsEditing: true,
-      aspect: [4, 3],
+      aspect: [4, 3]
     });
 
     if (!result.cancelled) {
-      this.uploadImage(result.uri);
+      this.setState({
+        selectedImage: result.uri
+      });
     }
   };
 
-  uploadImage = async uri => {
-    const blob = await new Promise((resolve, reject) => {
-      
-      const xhr = new XMLHttpRequest();
+  uploadImage = async () => {
+    let productName = this.state.productName;
+    let uri = this.state.selectedImage;
 
-      xhr.onload = function() {
-        resolve(xhr.response);
-      };
+    if (productName) {
+      const blob = await new Promise((resolve, reject) => {
+        const xhr = new XMLHttpRequest();
 
-      xhr.onerror = function(e) {
-        console.log(e);
-        reject(new TypeError('Network request failed'));
-      };
+        xhr.onload = function() {
+          resolve(xhr.response);
+        };
 
-      xhr.responseType = 'blob';
-      xhr.open('GET', uri, true);
-      xhr.send(null);
-    });
-  
-    // const ref = firebase.storage().ref().child('Products');
-    // const snapshot = await ref.put(blob);
-    console.log(123)
-    await firebase.storage().ref().child('Products').put(blob)
-  
-    blob.close();
-  
-    return await snapshot.ref.getDownloadURL();
-  };
+        xhr.onerror = function(e) {
+          console.log(e);
+          reject(new TypeError("Network request failed"));
+        };
+
+        xhr.responseType = "blob";
+        xhr.open("GET", uri, true);
+        xhr.send(null);
+      });
+
+      const ref = await firebase
+        .storage()
+        .ref()
+        .child("Products").child(productName)
+      const snapshot = await ref.put(blob);
+
+      // await firebase.storage().ref().child('Products').put(blob)
+
+      blob.close();
+
+      return await snapshot.ref.getDownloadURL();
+    }
+  }
 
   render() {
-    const { picture } = this.state;
+    const { selectedImage } = this.state;
     return (
       <Container>
         <Header
@@ -107,8 +121,8 @@ class AddProduct extends Component {
                 <Thumbnail
                   large
                   source={
-                    picture
-                      ? { uri: picture }
+                    selectedImage
+                      ? { uri: selectedImage }
                       : require("../../assets/placeholder/person_place.png")
                   }
                 />
@@ -118,7 +132,7 @@ class AddProduct extends Component {
             <View style={{ padding: 120 }}>
               <Button
                 large
-                onPress={this.next}
+                onPress={this.uploadImage}
                 style={{
                   alignSelf: "center",
                   borderRadius: 24,
