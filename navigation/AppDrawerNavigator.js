@@ -15,11 +15,11 @@ import AddProduct from "../Screens/AddProduct";
 import SignOut from "../components/Sign Out";
 
 import MyOrders from "../Screens/MyOrders";
-import MyProfile from "../Screens/AddProduct";
-import MyAddresses from "../Screens/AddProduct";
-import MyVouchers from "../Screens/AddProduct";
-import ContactUs from "../Screens/AddProduct";
-import Settings from "../Screens/AddProduct";
+import MyProfile from "../Screens/MyProfile";
+import MyAddresses from "../Screens/MyAddresses";
+import MyVouchers from "../Screens/MyVouchers";
+import ContactUs from "../Screens/ContactUs";
+import Settings from "../Screens/Settings";
 
 
 const { width } = Dimensions.get("window");
