@@ -30,11 +30,7 @@ class Homescreen extends Component {
   }
 
   static navigationOptions = {
-    header: null,
-    drawerLabel: "Home",
-    drawerIcon: ({ tintColor }) => (
-      <Icon name='home' style={{color : tintColor}} />
-    )
+    header: null
   };
 
   _renderItem({ item, index }, parallaxProps) {
@@ -121,9 +117,16 @@ class Homescreen extends Component {
   }
 }
 
-export default HomeStackNavigator = createStackNavigator({
-  Homescreen: Homescreen
-})
+const HomeStackNavigator = createStackNavigator({
+  Homescreen
+});
+
+HomeStackNavigator.navigationOptions = {
+  drawerLabel: "Store",
+  drawerIcon: ({ tintColor }) => <Icon name="home" fontSize={24} style={{color : tintColor}} />
+};
+
+export default HomeStackNavigator;
 
 const styles = StyleSheet.create({
   container: {
