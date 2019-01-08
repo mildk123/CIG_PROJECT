@@ -71,13 +71,10 @@ class AddProduct extends Component {
         xhr.send(null);
       });
 
-      const ref = await firebase
-        .storage()
-        .ref()
-        .child("Products").child(productName)
-      const snapshot = await ref.put(blob);
+       await firebase.storage().ref().child("Products").child(productName).put(blob)
+       .then(success => console.log(success))
+       .catch(err => console.log(err))
 
-      // await firebase.storage().ref().child('Products').put(blob)
 
       blob.close();
 
