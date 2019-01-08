@@ -13,7 +13,7 @@ import {
 
 import Header from "../../Helper/Header";
 
-import { Constants, ImagePicker, Permissions } from "expo";
+import { ImagePicker, Permissions } from "expo";
 
 import firebase from "../../config/firebase";
 const database = firebase.database().ref();
@@ -33,7 +33,6 @@ class AddProduct extends Component {
 
   async componentDidMount() {
     await Permissions.askAsync(Permissions.CAMERA_ROLL);
-    await Permissions.askAsync(Permissions.CAMERA);
   }
 
   selectImage = async () => {
@@ -72,13 +71,21 @@ class AddProduct extends Component {
       });
 
        await firebase.storage().ref().child("Products").child(productName).put(blob)
-       .then(success => console.log(success))
-       .catch(err => console.log(err))
-
-
-      blob.close();
-
-      return await snapshot.ref.getDownloadURL();
+       .then((snapshot) => {
+        return snapshot.ref.getDownloadURL();
+    })
+       .then(downloadURL => {         
+        database.child('Products').push({
+          ProductName : productName,
+          downloadURL : downloadURL
+        },()=>{
+          this.setState({
+            productName : null,
+            selectedImage : null
+          })
+        })
+    })
+       .catch(err => alert(err))
     }
   }
 
@@ -102,6 +109,7 @@ class AddProduct extends Component {
           <Item>
             <Icon active name="home" />
             <Input
+              value={this.state.productName}
               placeholder="Product Name"
               onChangeText={text => this.setState({ productName: text })}
             />
