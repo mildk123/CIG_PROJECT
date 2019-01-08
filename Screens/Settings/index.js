@@ -8,7 +8,7 @@ export class Settings extends Component {
         header: null,
         drawerLabel: "Settings",
         drawerIcon: ({ tintColor }) => (
-         <Icon name='ios-checkbox-outline' fontSize={24} style={{color: tintColor}} />
+         <Icon name='ios-settings' fontSize={24} style={{color: tintColor}} />
         )
       };
 

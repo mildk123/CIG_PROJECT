@@ -8,7 +8,7 @@ export class ContactUs extends Component {
         header: null,
         drawerLabel: "Contact Us",
         drawerIcon: ({ tintColor }) => (
-         <Icon name='ios-checkbox-outline' fontSize={24} style={{color: tintColor}} />
+         <Icon name='ios-mail' fontSize={24} style={{color: tintColor}} />
         )
       };
 

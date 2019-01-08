@@ -8,7 +8,7 @@ export class MyAddresses extends Component {
         header: null,
         drawerLabel: "My Addresses",
         drawerIcon: ({ tintColor }) => (
-         <Icon name='ios-checkbox-outline' fontSize={24} style={{color: tintColor}} />
+         <Icon name='ios-pin' fontSize={24} style={{color: tintColor}} />
         )
       };
 
