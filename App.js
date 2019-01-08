@@ -1,10 +1,10 @@
 import React from "react";
-import { View, StyleSheet, YellowBox } from "react-native";
+import { View, StyleSheet, YellowBox, StatusBar } from "react-native";
 
 import { AppLoading, Font, Icon } from "expo";
 import AppNavigator from "./navigation/AppNavigator";
 
-YellowBox.ignoreWarnings(['Setting a timer']);
+YellowBox.ignoreWarnings(["Setting a timer"]);
 
 export default class App extends React.Component {
   state = {
@@ -29,6 +29,10 @@ export default class App extends React.Component {
     this.setState({ isLoadingComplete: true });
   };
 
+  componentDidMount() {
+    StatusBar.setHidden(hidden = true)
+  }
+
   render() {
     if (!this.state.isLoadingComplete && !this.props.skipLoadingScreen) {
       return (
@@ -41,6 +45,8 @@ export default class App extends React.Component {
     } else {
       return (
         <View style={styles.container}>
+          <StatusBar animated={true} showHideTransition={"fade"} />
+
           <AppNavigator />
         </View>
       );

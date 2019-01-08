@@ -28,8 +28,12 @@ class AddProduct extends Component {
   }
 
   static navigationOptions = {
-    header: null
-  };
+    header: null,
+      drawerLabel: "Product",
+      drawerIcon: ({ tintColor }) => (
+        <Icon name='ios-add' fontSize={24} style={{color : tintColor}}/>
+      )
+  }
 
   async componentDidMount() {
     await Permissions.askAsync(Permissions.CAMERA_ROLL);

@@ -6,7 +6,7 @@ import { Dimensions, ScrollView } from "react-native";
 import Header from "../../Helper/Header";
 
 import Carousel from "react-native-snap-carousel";
-import {  Card, CardItem, Text, Body } from "native-base";
+import { Card, CardItem, Text, Body, Icon } from "native-base";
 
 class Homescreen extends Component {
   constructor() {
@@ -30,7 +30,11 @@ class Homescreen extends Component {
   }
 
   static navigationOptions = {
-    header: null
+    header: null,
+    drawerLabel: "Home",
+    drawerIcon: ({ tintColor }) => (
+      <Icon name='home' style={{color : tintColor}} />
+    )
   };
 
   _renderItem({ item, index }, parallaxProps) {
@@ -62,8 +66,7 @@ class Homescreen extends Component {
           {...this.props}
         />
 
-        <View
-        >
+        <View>
           <Carousel
             layout={"default"}
             data={this.state.entries}
@@ -118,9 +121,9 @@ class Homescreen extends Component {
   }
 }
 
-export default (HomeStackNavigator = createStackNavigator({
-  Homescreen: Homescreen,
-}));
+export default HomeStackNavigator = createStackNavigator({
+  Homescreen: Homescreen
+})
 
 const styles = StyleSheet.create({
   container: {
@@ -152,12 +155,12 @@ const styles = StyleSheet.create({
   cardFooter: {
     borderBottomLeftRadius: 16,
     borderBottomRightRadius: 16,
-    backgroundColor: '#C00000',
+    backgroundColor: "#C00000"
   },
 
   title: {
     margin: 5,
-    color : 'white',
+    color: "white",
     fontSize: Dimensions.get("window").width * 0.05
   }
 });
