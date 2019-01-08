@@ -5,24 +5,31 @@ import {
   ScrollView,
   Dimensions,
   View,
-  Image
+  Image,
+  AsyncStorage
 } from "react-native";
 
 import { createDrawerNavigator, DrawerItems } from "react-navigation";
 
 import HomeStackNavigator from "../Screens/Homescreen";
-import AddProduct from "../Screens/AddProduct";
-import SignOut from "../components/Sign Out";
-
 import MyOrders from "../Screens/MyOrders";
 import MyProfile from "../Screens/MyProfile";
 import MyAddresses from "../Screens/MyAddresses";
 import MyVouchers from "../Screens/MyVouchers";
 import ContactUs from "../Screens/ContactUs";
+import AddProduct from "../Screens/AddProduct";
 import Settings from "../Screens/Settings";
 
+import { Button } from "react-native-elements";
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 const { width } = Dimensions.get("window");
+
+SignOut = async () => {
+  await AsyncStorage.removeItem("userLoggedIn");
+
+  this.props.navigation.navigate("Auth");
+};
 
 export default createDrawerNavigator(
   {
@@ -33,11 +40,10 @@ export default createDrawerNavigator(
     MyVouchers,
     ContactUs,
     Settings,
-    AddProduct,
-    SignOut
+    AddProduct
   },
   {
-    // drawerWidth: width,
+    drawerWidth: width * 0.6,
     contentComponent: props => (
       <SafeAreaView style={{ flex: 1 }}>
         <View
@@ -57,10 +63,32 @@ export default createDrawerNavigator(
         <ScrollView>
           <DrawerItems {...props} />
         </ScrollView>
+
+        <View>
+          <View style={{ flexDirection: "row", justifyContent: 'space-between', padding: 10 }}>
+            
+            <Button
+              buttonStyle={{padding: 4,  width: width * 0.25, borderRadius: 12, elevation: 0, backgroundColor: '#eaa352' }}
+              title="Terms & Conditions"
+            />
+
+            <Button 
+              buttonStyle={{padding: 12,  width: width * 0.25, borderRadius: 12, elevation: 0, backgroundColor: '#eaa352' }}
+              title="FAQ" />
+          </View>
+
+            <Button
+              buttonStyle={{ backgroundColor: "red",padding:8,  width: width * 0.6 }}
+              icon={<Icon name="logout" size={24} style={{ color: "white" }} />}
+              title="Logout"
+            />
+
+        </View>
       </SafeAreaView>
     ),
     contentOptions: {
-      activeTintColor: "red"
+      activeTintColor: "white",
+      activeBackgroundColor: "black"
     }
   }
 );
