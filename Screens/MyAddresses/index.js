@@ -3,6 +3,8 @@ import { Text, View } from 'react-native'
 
 import { Icon } from 'native-base'
 
+import Header from "../../Helper/Header";
+
 export class MyAddresses extends Component {
     static navigationOptions = {
         header: null,
@@ -15,6 +17,16 @@ export class MyAddresses extends Component {
   render() {
     return (
       <View>
+        <Header
+          headerColor="#C00000"
+          icon={"menu"}
+          title={"My Addresses"}
+          hasTabs={false}
+          searchBtn={true}
+          favBtn={false}
+          threeDots={false}
+          {...this.props}
+        />
         <Text> My Addresses </Text>
       </View>
     )

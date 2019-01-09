@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Text, View } from 'react-native'
+import Header from "../../Helper/Header";
 
 import { Icon } from 'native-base'
 
@@ -15,6 +16,16 @@ export class MyOrders extends Component {
   render() {
     return (
       <View>
+        <Header
+          headerColor="#C00000"
+          icon={"menu"}
+          title={"My Orders"}
+          hasTabs={false}
+          searchBtn={true}
+          favBtn={false}
+          threeDots={false}
+          {...this.props}
+        />
         <Text> MyOrders </Text>
       </View>
     )
