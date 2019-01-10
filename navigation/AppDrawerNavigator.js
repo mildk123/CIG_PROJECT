@@ -1,13 +1,6 @@
 import React from "react";
-import {
-  Text,
-  SafeAreaView,
-  ScrollView,
-  Dimensions,
-  View,
-  Image,
-  AsyncStorage
-} from "react-native";
+import {SafeAreaView,ScrollView,Dimensions,View,Image,AsyncStorage} from "react-native";
+import { ActionSheet} from 'native-base'
 
 import { createDrawerNavigator, DrawerItems } from "react-navigation";
 
@@ -16,7 +9,6 @@ import MyOrders from "../Screens/MyOrders";
 import MyProfile from "../Screens/MyProfile";
 import AddressNavigator from "../Screens/MyAddresses";
 import MyVouchers from "../Screens/MyVouchers";
-import ContactUs from "../Screens/ContactUs";
 import AddProduct from "../Screens/AddProduct";
 import Settings from "../Screens/Settings";
 
@@ -38,9 +30,8 @@ export default createDrawerNavigator(
     MyProfile,
     AddressNavigator,
     MyVouchers,
-    ContactUs,
     Settings,
-    AddProduct
+    AddProduct,
   },
   {
     drawerWidth: width * 0.6,
@@ -65,24 +56,45 @@ export default createDrawerNavigator(
         </ScrollView>
 
         <View>
-          <View style={{ flexDirection: "row", justifyContent: 'space-between', padding: 10 }}>
-            
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+              padding: 10
+            }}
+          >
             <Button
-              buttonStyle={{padding: 4,  width: width * 0.25, borderRadius: 12, elevation: 0, backgroundColor: '#eaa352' }}
+              buttonStyle={{
+                padding: 4,
+                width: width * 0.25,
+                borderRadius: 12,
+                elevation: 0,
+                backgroundColor: "#eaa352"
+              }}
               title="Terms & Conditions"
             />
 
-            <Button 
-              buttonStyle={{padding: 12,  width: width * 0.25, borderRadius: 12, elevation: 0, backgroundColor: '#eaa352' }}
-              title="FAQ" />
+            <Button
+              buttonStyle={{
+                padding: 12,
+                width: width * 0.25,
+                borderRadius: 12,
+                elevation: 0,
+                backgroundColor: "#eaa352"
+              }}
+              title="FAQ"
+            />
           </View>
 
-            <Button
-              buttonStyle={{ backgroundColor: "red",padding:8,  width: width * 0.6 }}
-              icon={<Icon name="logout" size={24} style={{ color: "white" }} />}
-              title="Logout"
-            />
-
+          <Button
+            buttonStyle={{
+              backgroundColor: "red",
+              padding: 8,
+              width: width * 0.6
+            }}
+            icon={<Icon name="logout" size={24} style={{ color: "white" }} />}
+            title="Logout"
+          />
         </View>
       </SafeAreaView>
     ),

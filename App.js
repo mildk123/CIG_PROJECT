@@ -1,5 +1,6 @@
 import React from "react";
 import { View, StyleSheet, YellowBox, StatusBar } from "react-native";
+import { Root } from "native-base";
 
 import { AppLoading, Font, Icon } from "expo";
 import AppNavigator from "./navigation/AppNavigator";
@@ -28,7 +29,7 @@ export default class App extends React.Component {
   };
 
   componentDidMount() {
-    StatusBar.setHidden(hidden = true)
+    StatusBar.setHidden((hidden = true));
   }
 
   render() {
@@ -42,11 +43,9 @@ export default class App extends React.Component {
       );
     } else {
       return (
-        <View style={styles.container}>
-          {/* <StatusBar animated={true} showHideTransition={"fade"} /> */}
-
+        <Root>
           <AppNavigator />
-        </View>
+        </Root>
       );
     }
   }

@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import { createStackNavigator } from "react-navigation";
-import { StyleSheet, View, Image } from "react-native";
-import { Dimensions, ScrollView } from "react-native";
+import { StyleSheet, View, Image,  Dimensions, ScrollView } from "react-native";
 
 import Header from "../../Helper/Header";
-
 
 import Carousel from "react-native-snap-carousel";
 import { Card, CardItem, Text, Body, Icon, Fab } from "native-base";
