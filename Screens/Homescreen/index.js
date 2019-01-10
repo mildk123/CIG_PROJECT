@@ -55,7 +55,6 @@ class Homescreen extends Component {
       <View style={styles.container}>
         <Fab
           active={this.state.active}
-          position="bottomRight"
           containerStyle={{zIndex: 1909, margin: 10}}
           position="bottomRight"
           onPress={() => { this.props.navigation.navigate('Cart')} }

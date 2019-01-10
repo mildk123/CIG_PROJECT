@@ -14,7 +14,7 @@ import { createDrawerNavigator, DrawerItems } from "react-navigation";
 import HomeStackNavigator from "../Screens/Homescreen";
 import MyOrders from "../Screens/MyOrders";
 import MyProfile from "../Screens/MyProfile";
-import MyAddresses from "../Screens/MyAddresses";
+import AddressNavigator from "../Screens/MyAddresses";
 import MyVouchers from "../Screens/MyVouchers";
 import ContactUs from "../Screens/ContactUs";
 import AddProduct from "../Screens/AddProduct";
@@ -36,7 +36,7 @@ export default createDrawerNavigator(
     HomeStackNavigator,
     MyOrders,
     MyProfile,
-    MyAddresses,
+    AddressNavigator,
     MyVouchers,
     ContactUs,
     Settings,
