@@ -5,8 +5,10 @@ import { Dimensions, ScrollView } from "react-native";
 
 import Header from "../../Helper/Header";
 
+
 import Carousel from "react-native-snap-carousel";
-import { Card, CardItem, Text, Body, Icon } from "native-base";
+import { Card, CardItem, Text, Body, Icon, Fab } from "native-base";
+import Cart from "../Cart";
 
 class Homescreen extends Component {
   constructor() {
@@ -50,7 +52,17 @@ class Homescreen extends Component {
 
   render() {
     return (
-      <ScrollView style={styles.container}>
+      <View style={styles.container}>
+        <Fab
+          active={this.state.active}
+          position="bottomRight"
+          containerStyle={{zIndex: 1909, margin: 10}}
+          position="bottomRight"
+          onPress={() => { this.props.navigation.navigate('Cart')} }
+        >
+          <Icon style={{color: 'white', fontSize : 25}} name="ios-basket" />
+        </Fab>
+
         <Header
           headerColor="#C00000"
           icon={"menu"}
@@ -62,9 +74,11 @@ class Homescreen extends Component {
           {...this.props}
         />
 
-        <View>
-          <View style={{padding: 15, marginBottom: 10 }}>
-            <Text style={{fontSize: 30, color: '#757575'}}>Order again from</Text>
+        <ScrollView>
+          <View style={{ padding: 15, marginBottom: 10 }}>
+            <Text style={{ fontSize: 30, color: "#757575" }}>
+              Order again from
+            </Text>
           </View>
           <Carousel
             layout={"default"}
@@ -78,8 +92,10 @@ class Homescreen extends Component {
             useScrollView={true}
             vertical={false}
           />
-          <View style={{padding: 15, marginBottom: 10, marginTop: 20 }}>
-            <Text style={{fontSize: 30, color: '#757575'}}>Recommended for you</Text>
+          <View style={{ padding: 15, marginBottom: 10, marginTop: 20 }}>
+            <Text style={{ fontSize: 30, color: "#757575" }}>
+              Recommended for you
+            </Text>
           </View>
           <Carousel
             layout={"default"}
@@ -93,8 +109,10 @@ class Homescreen extends Component {
             useScrollView={true}
             vertical={false}
           />
-          <View style={{padding: 15, marginBottom: 10, marginTop: 20 }}>
-            <Text style={{fontSize: 30, color: '#757575'}}>Top rated brand </Text>
+          <View style={{ padding: 15, marginBottom: 10, marginTop: 20 }}>
+            <Text style={{ fontSize: 30, color: "#757575" }}>
+              Top rated brand{" "}
+            </Text>
           </View>
           <Carousel
             layout={"default"}
@@ -108,8 +126,10 @@ class Homescreen extends Component {
             useScrollView={true}
             vertical={false}
           />
-          <View style={{padding: 15, marginBottom: 10, marginTop: 20 }}>
-            <Text style={{fontSize: 30, color: '#757575'}}>Buy from these </Text>
+          <View style={{ padding: 15, marginBottom: 10, marginTop: 20 }}>
+            <Text style={{ fontSize: 30, color: "#757575" }}>
+              Buy from these{" "}
+            </Text>
           </View>
           <Carousel
             layout={"default"}
@@ -123,14 +143,16 @@ class Homescreen extends Component {
             useScrollView={true}
             vertical={false}
           />
-        </View>
-      </ScrollView>
+        </ScrollView>
+
+      </View>
     );
   }
 }
 
 const HomeStackNavigator = createStackNavigator({
-  Homescreen
+  Homescreen,
+  Cart : Cart,
 });
 
 HomeStackNavigator.navigationOptions = {
@@ -152,7 +174,7 @@ const styles = StyleSheet.create({
     width: Dimensions.get("window").width
   },
   itemWidth: {
-    width: Dimensions.get("window").width - 120
+    width: Dimensions.get("window").width - 100
   },
 
   cardMain: {
@@ -170,8 +192,8 @@ const styles = StyleSheet.create({
   },
 
   cardFooter: {
-    borderBottomLeftRadius: 16,
-    borderBottomRightRadius: 16,
+    borderBottomLeftRadius: 5,
+    borderBottomRightRadius: 5,
     backgroundColor: "#C00000"
   },
 
