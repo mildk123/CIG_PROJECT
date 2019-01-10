@@ -14,8 +14,6 @@ export default class App extends React.Component {
   _loadResourcesAsync = async () => {
     return Promise.all([
       Font.loadAsync({
-        ...Icon.Ionicons.font,
-        ...Icon.Octicons.font,
         Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf")
       })
     ]);
@@ -45,7 +43,7 @@ export default class App extends React.Component {
     } else {
       return (
         <View style={styles.container}>
-          <StatusBar animated={true} showHideTransition={"fade"} />
+          {/* <StatusBar animated={true} showHideTransition={"fade"} /> */}
 
           <AppNavigator />
         </View>

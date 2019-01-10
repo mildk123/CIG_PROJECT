@@ -63,6 +63,9 @@ class Homescreen extends Component {
         />
 
         <View>
+          <View style={{padding: 15, marginBottom: 10 }}>
+            <Text style={{fontSize: 30, color: '#757575'}}>Order again from</Text>
+          </View>
           <Carousel
             layout={"default"}
             data={this.state.entries}
@@ -75,6 +78,9 @@ class Homescreen extends Component {
             useScrollView={true}
             vertical={false}
           />
+          <View style={{padding: 15, marginBottom: 10, marginTop: 20 }}>
+            <Text style={{fontSize: 30, color: '#757575'}}>Recommended for you</Text>
+          </View>
           <Carousel
             layout={"default"}
             data={this.state.entries}
@@ -87,6 +93,9 @@ class Homescreen extends Component {
             useScrollView={true}
             vertical={false}
           />
+          <View style={{padding: 15, marginBottom: 10, marginTop: 20 }}>
+            <Text style={{fontSize: 30, color: '#757575'}}>Top rated brand </Text>
+          </View>
           <Carousel
             layout={"default"}
             data={this.state.entries}
@@ -99,6 +108,9 @@ class Homescreen extends Component {
             useScrollView={true}
             vertical={false}
           />
+          <View style={{padding: 15, marginBottom: 10, marginTop: 20 }}>
+            <Text style={{fontSize: 30, color: '#757575'}}>Buy from these </Text>
+          </View>
           <Carousel
             layout={"default"}
             data={this.state.entries}
@@ -123,7 +135,9 @@ const HomeStackNavigator = createStackNavigator({
 
 HomeStackNavigator.navigationOptions = {
   drawerLabel: "Store",
-  drawerIcon: ({ tintColor }) => <Icon name="home" fontSize={24} style={{color : tintColor}} />
+  drawerIcon: ({ tintColor }) => (
+    <Icon name="home" fontSize={24} style={{ color: tintColor }} />
+  )
 };
 
 export default HomeStackNavigator;
