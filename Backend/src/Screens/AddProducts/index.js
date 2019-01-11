@@ -1,23 +1,14 @@
 import React, { Component } from "react";
 
 // Material Button
-import Button from "@material-ui/core/Button";
+// import Button from "@material-ui/core/Button";
 
 // Drawer Material
 import Drawer from "../../Helper/Drawer";
 
 // Navbar
 import NavBar from "../../Helper/NavBar/";
-
-// SweetAlert
-// import swal from 'sweetalert'
-
-// import { updateUser } from "../../Redux/Actions/authAction";
-// import { CurrentUserIndex } from "../../Redux/Actions/meetingAction";
-// import { connect } from "react-redux";
-
-// import firebase from '../../Config/firebase'
-// const database = firebase.database().ref();
+import Card from '../../Helper/Card' ;
 
 export default class AddProducts extends Component {
   constructor(props) {
@@ -39,6 +30,11 @@ export default class AddProducts extends Component {
         <NavBar Drawer={this.Drawer} {...this.props}>
           Add Products
         </NavBar>
+      
+      <div style={{padding: 50}}>
+
+        <Card />
+      </div>
 
         <div />
       </div>
