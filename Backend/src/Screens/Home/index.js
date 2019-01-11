@@ -1,81 +1,66 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 // Material Button
-import Button from '@material-ui/core/Button';
+// import Button from "@material-ui/core/Button";
 
 // Drawer Material
-import Drawer from '../../Helper/Drawer'
+import Drawer from "../../Helper/Drawer";
 
 // Navbar
-import NavBar from '../../Helper/NavBar/'
+import NavBar from "../../Helper/NavBar/";
 
 // SweetAlert
 // import swal from 'sweetalert'
 
-import { updateUser, } from '../../Redux/Actions/authAction'
-import { CurrentUserIndex } from '../../Redux/Actions/meetingAction'
-import { connect } from 'react-redux'
-
+import { updateUser } from "../../Redux/Actions/authAction";
+import { CurrentUserIndex } from "../../Redux/Actions/meetingAction";
+import { connect } from "react-redux";
 
 // import firebase from '../../Config/firebase'
 // const database = firebase.database().ref();
 
-
 class Home extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            showSnackBar: true,
-            meetingList: []
-        };
+  constructor(props) {
+    super(props);
+    this.state = {
+      showSnackBar: true,
+      meetingList: []
+    };
 
-        this.showDrawer = React.createRef()
-    }
+    this.showDrawer = React.createRef();
+  }
 
-   
+  Drawer = () => {
+    this.showDrawer.current.handleClickOpen("left", true);
+  };
 
-    
+  render() {
+    return (
+      <div>
+        <Drawer ref={this.showDrawer} {...this.props} />
 
-    Drawer = () => {
-        this.showDrawer.current.handleClickOpen('left', true);
-    }
+        <NavBar Drawer={this.Drawer} {...this.props} >
+          Dashboard
+        </NavBar>
 
-    
-
-
-
-    render() {
-        return (
-            <div>
-                <Drawer ref={this.showDrawer} props={this.props} />
-
-                <NavBar Drawer={this.Drawer} btnColor="secondary">
-                    Dashboard
-                    <Button onClick={this.setMeeting} color="primary" variant="contained" size="small" style={{position: 'absolute', right: 10}}>
-                        Set a meeting!
-                    </Button>
-                </NavBar>
-
-
-                <div>
-                    
-                </div>
-
-            </div>
-        );
-    }
+        <div />
+      </div>
+    );
+  }
 }
-
 
 const mapStateToProps = (state, props) => {
-    return {
-        state
-    }
-}
+  return {
+    state
+  };
+};
 
 const mapDispatchToProps = {
-    onUpdateUser: updateUser,
-    onCurrentUserIndex: CurrentUserIndex
-}
+  onUpdateUser: updateUser,
+  onCurrentUserIndex: CurrentUserIndex
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Home);

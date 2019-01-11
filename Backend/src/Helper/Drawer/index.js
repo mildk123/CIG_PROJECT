@@ -8,8 +8,7 @@ import Divider from '@material-ui/core/Divider';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import MailIcon from '@material-ui/icons/Mail';
 
-// Firebase
-import firebase from '../../Config/firebase'
+
 
 
 class SwipeableTemporaryDrawer extends React.Component {
@@ -34,28 +33,15 @@ class SwipeableTemporaryDrawer extends React.Component {
     })
   )
 
-  signOut = () => {
-    firebase.auth().signOut()
-    .then(() => {
-      console.log('Signed Out');
-      
-      localStorage.removeItem('userSignup');
-      localStorage.removeItem('myUid');
-      
-      this.props.props.history.push('/')
-    })
-    .catch(error => {
-      console.error('Sign Out Error', error);
-    });
-  }
+  
   dashboard = () => {
-    this.props.props.history.push('/Home')
+    this.props.history.push('/Home')
   }
   addProducts = () => {
-    this.props.props.history.push('/AddProducts')
+    this.props.history.push('/AddProducts')
   }
   AddShop = () => {
-    this.props.props.history.push('/AddShop')
+    this.props.history.push('/AddShop')
   }
 
 
