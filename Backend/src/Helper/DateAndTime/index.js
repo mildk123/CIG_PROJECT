@@ -28,18 +28,13 @@ class DateTimePickers extends React.Component {
     const { classes } = this.props;
     return (
       <form className={classes.container} >
+
         <TextField
         style={{margin: 10}}
           label="Opening Time"
           type="time"
           defaultValue="08:45"
           className={classes.textField}
-          InputLabelProps={{
-            shrink: true
-          }}
-          inputProps={{
-            step: 300 // 5 min
-          }}
           onChange = { (data) => this.onChange(data.target.value)}
         />
 
@@ -49,14 +44,10 @@ class DateTimePickers extends React.Component {
           type="time"
           defaultValue="18:30"
           className={classes.textField}
-          InputLabelProps={{
-            shrink: true
-          }}
-          inputProps={{
-            step: 300 // 5 min
-          }}
           onChange = { (data) => this.onChange(data.target.value)}
         />
+
+        
       </form>
     );
   }

@@ -10,7 +10,6 @@ import InputLabel from "@material-ui/core/InputLabel";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 
-import DateAndTime from '../../Helper/DateAndTime'
 
 const styles = theme => ({
   container: {
@@ -74,10 +73,7 @@ class ComposedTextField extends React.Component {
           </FormControl>
         </div>
 
-        <div style={{ flex: 1, justifyContent: "space-evenly" }}>
-          <DateAndTime />
-          
-        </div>
+
       </div>
     );
   }
