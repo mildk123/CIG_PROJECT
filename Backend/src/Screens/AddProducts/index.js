@@ -8,7 +8,7 @@ import Drawer from "../../Helper/Drawer";
 
 // Navbar
 import NavBar from "../../Helper/NavBar/";
-import Card from "../../Helper/Card";
+import Stepper from '../../Helper/Stepper'
 
 export default class AddProducts extends Component {
   constructor(props) {
@@ -32,7 +32,7 @@ export default class AddProducts extends Component {
         </NavBar>
 
         <div style={{ padding: 50 }}>
-          <Card />
+          <Stepper />
         </div>
 
         <div />
