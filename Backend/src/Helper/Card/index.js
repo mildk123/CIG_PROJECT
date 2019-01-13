@@ -10,7 +10,7 @@ import CardContent from "@material-ui/core/CardContent";
 import Input from "../Input";
 import DateAndTime from "../../Helper/DateAndTime";
 
-import DropDown from '../DropDown'
+import WhichDays from '../CheckBoxes'
 
 const styles = theme => ({
   card: {
@@ -41,8 +41,10 @@ class RecipeReviewCard extends React.Component {
         </CardContent>
 
         <CardContent>
-          <DateAndTime />
-          <DropDown handleChoice={this.handleChoice} />
+          <DateAndTime handleChoice={this.handleChoice}/>
+        </CardContent>
+        <CardContent>
+          <WhichDays />
         </CardContent>
       </Card>
     );

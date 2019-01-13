@@ -24,25 +24,28 @@ const styles = theme => ({
 });
 
 class MenuListComposition extends React.Component {
-  state = {
-    open: false
-  };
+  constructor() {
+    super();
+    this.state = {
+      open: false
+    };
+  }
 
   handleToggle = () => {
-    this.setState(state => ({ open: !state.open }));
+    this.setState(state => ({ open: !this.state.open }));
   };
 
   handleClose = () => {
     this.setState({ open: false });
   };
 
-  handleChoice = (resp) => {
-    this.props.handleChoice(resp)
+  handleChoice = resp => {
+    this.props.handleChoice(resp);
     this.setState({
-        noDays : resp,
-        open: false
-    })
-  }
+      noDays: resp,
+      open: false
+    });
+  };
 
   render() {
     const { classes } = this.props;
@@ -62,7 +65,7 @@ class MenuListComposition extends React.Component {
               style={{ width: 250 }}
               value={this.state.noDays && this.state.noDays}
               startAdornment={
-                <InputAdornment position="end">
+                <InputAdornment position="start">
                   <AccountCircle />
                 </InputAdornment>
               }
@@ -81,13 +84,39 @@ class MenuListComposition extends React.Component {
                 <Paper>
                   <ClickAwayListener onClickAway={this.handleClose}>
                     <MenuList>
-                      <MenuItem onClick={() => this.handleChoice('once a week')}>once a week</MenuItem>
-                      <MenuItem onClick={() => this.handleChoice('2 Days a week')}>2 Days a week</MenuItem>
-                      <MenuItem onClick={() => this.handleChoice('3 Days a week')}>3 Days a week</MenuItem>
-                      <MenuItem onClick={() => this.handleChoice('4 Days a week')}>4 Days a week</MenuItem>
-                      <MenuItem onClick={() => this.handleChoice('5 Days a week')}>5 Days a week</MenuItem>
-                      <MenuItem onClick={() => this.handleChoice('6 Days a week')}>6 Days a week</MenuItem>
-                      <MenuItem onClick={() => this.handleChoice('Full week')}>Full week</MenuItem>
+                      <MenuItem
+                        onClick={() => this.handleChoice("once a week")}
+                      >
+                        once a week
+                      </MenuItem>
+                      <MenuItem
+                        onClick={() => this.handleChoice("2 Days a week")}
+                      >
+                        2 Days a week
+                      </MenuItem>
+                      <MenuItem
+                        onClick={() => this.handleChoice("3 Days a week")}
+                      >
+                        3 Days a week
+                      </MenuItem>
+                      <MenuItem
+                        onClick={() => this.handleChoice("4 Days a week")}
+                      >
+                        4 Days a week
+                      </MenuItem>
+                      <MenuItem
+                        onClick={() => this.handleChoice("5 Days a week")}
+                      >
+                        5 Days a week
+                      </MenuItem>
+                      <MenuItem
+                        onClick={() => this.handleChoice("6 Days a week")}
+                      >
+                        6 Days a week
+                      </MenuItem>
+                      <MenuItem onClick={() => this.handleChoice("Full week")}>
+                        Full week
+                      </MenuItem>
                     </MenuList>
                   </ClickAwayListener>
                 </Paper>

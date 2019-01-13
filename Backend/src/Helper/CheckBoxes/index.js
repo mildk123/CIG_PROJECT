@@ -1,28 +1,35 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import FormLabel from '@material-ui/core/FormLabel';
-import FormControl from '@material-ui/core/FormControl';
-import FormGroup from '@material-ui/core/FormGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import Checkbox from '@material-ui/core/Checkbox';
+import React from "react";
+import PropTypes from "prop-types";
+import { withStyles } from "@material-ui/core/styles";
+import FormLabel from "@material-ui/core/FormLabel";
+import FormControl from "@material-ui/core/FormControl";
+import FormGroup from "@material-ui/core/FormGroup";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import FormHelperText from "@material-ui/core/FormHelperText";
+import Checkbox from "@material-ui/core/Checkbox";
 
 const styles = theme => ({
   root: {
-    display: 'flex',
+    display: "flex"
   },
   formControl: {
-    margin: theme.spacing.unit * 3,
-  },
+    margin: theme.spacing.unit * 3
+  }
 });
 
 class CheckboxesGroup extends React.Component {
-  state = {
-    gilad: true,
-    jason: false,
-    antoine: false,
-  };
+  constructor() {
+    super();
+    this.state = {
+      Monday: true,
+      Tuesday: true,
+      Wednesday: true,
+      Thursday: true,
+      Friday: true,
+      Saturday: false,
+      Sunday: false
+    };
+  }
 
   handleChange = name => event => {
     this.setState({ [name]: event.target.checked });
@@ -30,67 +37,102 @@ class CheckboxesGroup extends React.Component {
 
   render() {
     const { classes } = this.props;
-    const { gilad, jason, antoine } = this.state;
-    const error = [gilad, jason, antoine].filter(v => v).length !== 2;
+    const {
+      Monday,
+      Tuesday,
+      Wednesday,
+      Thursday,
+      Friday,
+      Saturday,
+      Sunday
+    } = this.state;
+    const error =
+      [Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday].filter(
+        v => v
+      ).length !== 2;
 
     return (
       <div className={classes.root}>
         <FormControl component="fieldset" className={classes.formControl}>
-          <FormLabel component="legend">Assign responsibility</FormLabel>
           <FormGroup>
             <FormControlLabel
               control={
-                <Checkbox checked={gilad} onChange={this.handleChange('gilad')} value="gilad" />
+                <Checkbox
+                  checked={Monday}
+                  onChange={this.handleChange("Monday")}
+                  value="Monday"
+                />
               }
-              label="Gilad Gray"
-            />
-            <FormControlLabel
-              control={
-                <Checkbox checked={jason} onChange={this.handleChange('jason')} value="jason" />
-              }
-              label="Jason Killian"
+              label="Monday"
             />
             <FormControlLabel
               control={
                 <Checkbox
-                  checked={antoine}
-                  onChange={this.handleChange('antoine')}
-                  value="antoine"
+                  checked={Tuesday}
+                  onChange={this.handleChange("Tuesday")}
+                  value="Tuesday"
                 />
               }
-              label="Antoine Llorca"
+              label="Tuesday"
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={Wednesday}
+                  onChange={this.handleChange("Wednesday")}
+                  value="Wednesday"
+                />
+              }
+              label="Wednesday"
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={Thursday}
+                  onChange={this.handleChange("Thursday")}
+                  value="Thursday"
+                />
+              }
+              label="Thursday"
             />
           </FormGroup>
-          <FormHelperText>Be careful</FormHelperText>
         </FormControl>
-      
-        <FormControl required error={error} component="fieldset" className={classes.formControl}>
-          <FormLabel component="legend">Pick two</FormLabel>
+
+        <FormControl component="fieldset" className={classes.formControl}>
           <FormGroup>
             <FormControlLabel
               control={
-                <Checkbox checked={gilad} onChange={this.handleChange('gilad')} value="gilad" />
+                <Checkbox
+                  checked={Friday}
+                  onChange={this.handleChange("Friday")}
+                  value="Friday"
+                />
               }
-              label="Gilad Gray"
+              label="Friday"
             />
-            <FormControlLabel
-              control={
-                <Checkbox checked={jason} onChange={this.handleChange('jason')} value="jason" />
-              }
-              label="Jason Killian"
-            />
+
             <FormControlLabel
               control={
                 <Checkbox
-                  checked={antoine}
-                  onChange={this.handleChange('antoine')}
-                  value="antoine"
+                  checked={Saturday}
+                  onChange={this.handleChange("Saturday")}
+                  value="Saturday"
                 />
               }
-              label="Antoine Llorca"
+              label="Saturday"
+            />
+
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={Sunday}
+                  onChange={this.handleChange("Sunday")}
+                  value="Sunday"
+                />
+              }
+              label="Sunday"
             />
           </FormGroup>
-          <FormHelperText>You can display an error</FormHelperText>
         </FormControl>
       </div>
     );
@@ -98,7 +140,7 @@ class CheckboxesGroup extends React.Component {
 }
 
 CheckboxesGroup.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired
 };
 
 export default withStyles(styles)(CheckboxesGroup);
