@@ -8,7 +8,7 @@ import Drawer from "../../Helper/Drawer";
 
 // Navbar
 import NavBar from "../../Helper/NavBar/";
-import Card from '../../Helper/Card' ;
+import Card from "../../Helper/Card";
 
 export default class AddProducts extends Component {
   constructor(props) {
@@ -30,11 +30,10 @@ export default class AddProducts extends Component {
         <NavBar Drawer={this.Drawer} {...this.props}>
           Add Products
         </NavBar>
-      
-      <div style={{padding: 50}}>
 
-        <Card />
-      </div>
+        <div style={{ padding: 50 }}>
+          <Card />
+        </div>
 
         <div />
       </div>

@@ -35,14 +35,10 @@ export default class AddShop extends Component {
     return (
       <div>
         <Drawer ref={this.showDrawer} {...this.props} />
-
-        <NavBar Drawer={this.Drawer} {...this.props} >
-          Add Shop
-          
+        <NavBar Drawer={this.Drawer} {...this.props}>
+          Add Shops
         </NavBar>
-
-        <div />
-      </div>
+              </div>
     );
   }
 }
