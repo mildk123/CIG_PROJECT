@@ -4,8 +4,7 @@ export class AddImage extends Component {
   render() {
     return (
       <div>
-        AddImage
-AddImage
+        cardsa
       </div>
     )
   }
