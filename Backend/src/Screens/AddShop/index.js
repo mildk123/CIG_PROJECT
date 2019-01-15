@@ -1,25 +1,16 @@
 import React, { Component } from "react";
 
 // Material Button
-import Button from "@material-ui/core/Button";
+// import Button from "@material-ui/core/Button";
 
 // Drawer Material
 import Drawer from "../../Helper/Drawer";
 
 // Navbar
 import NavBar from "../../Helper/NavBar/";
+import Stepper from '../../Helper/Stepper'
 
-// SweetAlert
-// import swal from 'sweetalert'
-
-// import { updateUser } from "../../Redux/Actions/authAction";
-// import { CurrentUserIndex } from "../../Redux/Actions/meetingAction";
-// import { connect } from "react-redux";
-
-// import firebase from '../../Config/firebase'
-// const database = firebase.database().ref();
-
-export default class AddShop extends Component {
+export default class AddProducts extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -35,10 +26,17 @@ export default class AddShop extends Component {
     return (
       <div>
         <Drawer ref={this.showDrawer} {...this.props} />
+
         <NavBar Drawer={this.Drawer} {...this.props}>
-          Add Shops
+          Add Shop
         </NavBar>
-              </div>
+
+        <div style={{ padding: 50 }}>
+          <Stepper />
+        </div>
+
+        <div />
+      </div>
     );
   }
 }

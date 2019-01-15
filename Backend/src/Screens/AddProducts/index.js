@@ -1,14 +1,9 @@
 import React, { Component } from "react";
 
-// Material Button
-// import Button from "@material-ui/core/Button";
-
-// Drawer Material
 import Drawer from "../../Helper/Drawer";
 
 // Navbar
 import NavBar from "../../Helper/NavBar/";
-import Stepper from '../../Helper/Stepper'
 
 export default class AddProducts extends Component {
   constructor(props) {
@@ -31,28 +26,8 @@ export default class AddProducts extends Component {
           Add Products
         </NavBar>
 
-        <div style={{ padding: 50 }}>
-          <Stepper />
-        </div>
-
         <div />
       </div>
     );
   }
 }
-
-// const mapStateToProps = (state, props) => {
-//   return {
-//     state
-//   };
-// };
-
-// const mapDispatchToProps = {
-//   onUpdateUser: updateUser,
-//   onCurrentUserIndex: CurrentUserIndex
-// };
-
-// export default connect(
-//   mapStateToProps,
-//   mapDispatchToProps
-// )(AddShop);

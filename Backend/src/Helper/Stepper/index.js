@@ -5,10 +5,9 @@ import Stepper from "@material-ui/core/Stepper";
 import Step from "@material-ui/core/Step";
 import StepLabel from "@material-ui/core/StepLabel";
 import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
 
-import ShopDetailes from "../../Screens/AddProducts";
-import ShopDP from "../../Screens/AddProducts/AddImage";
+import ShopDetailes from "../../Screens/AddShop/AddDetails";
+import ShopDP from "../../Screens/AddShop/AddImage";
 
 const styles = theme => ({
   root: {
@@ -58,9 +57,9 @@ class HorizontalLabelPositionBelowStepper extends React.Component {
 
     switch (stepIndex) {
       case 0:
-        return <ShopDetailes />;
+        return 
       case 1:
-        return <ShopDP />;
+        return
       case 2:
         return "This is the bit I really care about!";
       default:
@@ -86,6 +85,9 @@ class HorizontalLabelPositionBelowStepper extends React.Component {
             );
           })}
         </Stepper>
+
+        {this.state.activeStep === 0 && <ShopDetailes /> }
+        {this.state.activeStep === 1 && <ShopDP /> }
 
         <div>
           {this.state.activeStep === steps.length ? (

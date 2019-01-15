@@ -35,7 +35,6 @@ class RecipeReviewCard extends React.Component {
 
     return (
       <Card className={classes.card}>
-        <CardHeader title="Add Places " />
         <CardContent>
           <Input />
         </CardContent>
