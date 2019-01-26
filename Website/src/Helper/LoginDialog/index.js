@@ -1,5 +1,5 @@
 import React from 'react';
-import firebase from '../../Config/firebase'
+import firebase from '../../Config/firebase.js'
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
