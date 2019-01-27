@@ -5,7 +5,7 @@ export class AddDetails extends Component {
   render() {
     return (
       <div>
-        <Card />
+        <Card cardTitle="Shop Details"/>
       </div>
     )
   }

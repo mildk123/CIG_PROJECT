@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+
 import { withStyles } from "@material-ui/core/styles";
 import Stepper from "@material-ui/core/Stepper";
 import Step from "@material-ui/core/Step";
@@ -26,7 +26,7 @@ class HorizontalLabelPositionBelowStepper extends React.Component {
   constructor() {
     super();
     this.state = {
-      activeStep: 0
+      activeStep: 1
     };
   }
 
@@ -53,8 +53,6 @@ class HorizontalLabelPositionBelowStepper extends React.Component {
   };
 
   getStepContent = stepIndex => {
-    console.log(stepIndex);
-
     switch (stepIndex) {
       case 0:
         return 
@@ -71,7 +69,7 @@ class HorizontalLabelPositionBelowStepper extends React.Component {
     const { classes } = this.props;
     const steps = this.getSteps();
     const { activeStep } = this.state;
-    const data = this.getStepContent();
+    // const data = this.getStepContent();
     this.getStepContent(this.state.activeStep);
 
     return (
@@ -86,8 +84,9 @@ class HorizontalLabelPositionBelowStepper extends React.Component {
           })}
         </Stepper>
 
-        {this.state.activeStep === 0 && <ShopDetailes /> }
+        {this.state.activeStep === 0 && <ShopDetailes  /> }
         {this.state.activeStep === 1 && <ShopDP /> }
+        {this.state.activeStep === 2 && <ShopDP /> }
 
         <div>
           {this.state.activeStep === steps.length ? (
@@ -126,8 +125,5 @@ class HorizontalLabelPositionBelowStepper extends React.Component {
   }
 }
 
-HorizontalLabelPositionBelowStepper.propTypes = {
-  classes: PropTypes.object
-};
 
 export default withStyles(styles)(HorizontalLabelPositionBelowStepper);

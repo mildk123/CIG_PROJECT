@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 
 import Card from "@material-ui/core/Card";
-import CardHeader from "@material-ui/core/CardHeader";
 
 import CardContent from "@material-ui/core/CardContent";
 
@@ -27,7 +26,7 @@ class RecipeReviewCard extends React.Component {
   };
 
   handleChoice = (resp) => {
-    console.log('response on card ' , resp)
+    console.log('response on card ', resp)
   }
 
   render() {
@@ -35,15 +34,22 @@ class RecipeReviewCard extends React.Component {
 
     return (
       <Card className={classes.card}>
+        <h1>{this.props.cardTitle}</h1>
         <CardContent>
+
           <Input />
+          
         </CardContent>
 
         <CardContent>
-          <DateAndTime handleChoice={this.handleChoice}/>
+
+          <DateAndTime handleChoice={this.handleChoice} />
+
         </CardContent>
         <CardContent>
+
           <WhichDays />
+
         </CardContent>
       </Card>
     );

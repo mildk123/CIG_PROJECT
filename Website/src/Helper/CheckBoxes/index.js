@@ -1,11 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
-import FormLabel from "@material-ui/core/FormLabel";
 import FormControl from "@material-ui/core/FormControl";
 import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
-import FormHelperText from "@material-ui/core/FormHelperText";
 import Checkbox from "@material-ui/core/Checkbox";
 
 const styles = theme => ({
@@ -46,10 +44,7 @@ class CheckboxesGroup extends React.Component {
       Saturday,
       Sunday
     } = this.state;
-    const error =
-      [Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday].filter(
-        v => v
-      ).length !== 2;
+
 
     return (
       <div className={classes.root}>
