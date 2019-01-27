@@ -31,8 +31,10 @@ export default class AddProducts extends Component {
           Add Shop
         </NavBar>
 
-        <div style={{ padding: 50 }}>
+        
+        <div style={{paddingInlineStart: '8%', paddingBlockStart: '3%', textAlign: 'center'}}>
           <Stepper />
+        
         </div>
 
         <div />
@@ -56,3 +58,4 @@ export default class AddProducts extends Component {
 //   mapStateToProps,
 //   mapDispatchToProps
 // )(AddShop);
+
