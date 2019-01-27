@@ -31,7 +31,7 @@ class HorizontalLabelPositionBelowStepper extends React.Component {
   constructor() {
     super();
     this.state = {
-      activeStep: 2
+      activeStep: 1
     };
   }
 

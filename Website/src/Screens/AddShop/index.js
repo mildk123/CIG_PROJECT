@@ -10,7 +10,7 @@ import Drawer from "../../Helper/Drawer";
 import NavBar from "../../Helper/NavBar/";
 import Stepper from '../../Helper/Stepper'
 
-export default class AddProducts extends Component {
+export default class AddShop extends Component {
   constructor(props) {
     super(props);
     this.state = {};
