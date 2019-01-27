@@ -57,6 +57,16 @@ class HorizontalLabelPositionBelowStepper extends React.Component {
     return ["Add Shop Details", "Shop Location", "Finalize"];
   };
 
+  updateCoords = (callback) => {
+    console.log(callback)
+    this.setState = ({
+        selectedPlace: {
+            latitude: callback.latitude,
+            longitude: callback.longitude
+        }
+    })
+}
+
   // getStepContent = stepIndex => {
   //   switch (stepIndex) {
   //     case 0:
