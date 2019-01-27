@@ -10,22 +10,79 @@ import WhichDays from '../CheckBoxes'
 
 import { connect } from 'react-redux';
 import { storeShopDetails } from '../../Redux/Actions/shopAction'
+import swal from "sweetalert";
 
 class DetailsCard extends React.Component {
   constructor() {
     super()
     this.state = {
-      expanded: false
+      Monday: true,
+      Tuesday: true,
+      Wednesday: true,
+      Thursday: true,
+      Friday: true,
+      Saturday: false,
+      Sunday: false
     };
   }
 
-  handleExpandClick = () => {
-    this.setState(state => ({ expanded: !state.expanded }));
-  };
+  componentWillUnmount = () => {
+    const {
+      ClosingTime,
+      NoOfDays,
+      OpeningTime,
+      ShopDesc,
+      ShopName,
+      Monday,
+      Tuesday,
+      Wednesday,
+      Thursday,
+      Friday,
+      Saturday,
+      Sunday,
+    } = this.state;
 
+    if (ClosingTime ||
+      NoOfDays ||
+      OpeningTime ||
+      ShopDesc ||
+      ShopName ||
+      Monday ||
+      Tuesday ||
+      Wednesday ||
+      Thursday ||
+      Friday ||
+      Saturday ||
+      Sunday
+    ) {
+      swal('Please fill out all the fields!')
+      return false
+    }else{
+
+      
+      let myShopDetails = {
+        ClosingTime,
+        NoOfDays,
+        OpeningTime,
+        ShopDesc,
+        ShopName,
+        Monday,
+        Tuesday,
+        Wednesday,
+        Thursday,
+        Friday,
+        Saturday,
+        Sunday,
+      }
+      
+      this.props.onStoreShopDetails(myShopDetails)
+    }
+  }
 
   onChangeHandler = (name, payload) => {
-    console.log(name, payload)
+    this.setState({
+      [name]: payload
+    })
   }
 
   render() {
