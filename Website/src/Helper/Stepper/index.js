@@ -6,6 +6,10 @@ import Step from "@material-ui/core/Step";
 import StepLabel from "@material-ui/core/StepLabel";
 import Button from "@material-ui/core/Button";
 
+
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
+
 import ShopDetailes from "../../Screens/AddShop/AddDetails";
 import ShopDP from "../../Screens/AddShop/AddImage";
 
@@ -55,7 +59,7 @@ class HorizontalLabelPositionBelowStepper extends React.Component {
   getStepContent = stepIndex => {
     switch (stepIndex) {
       case 0:
-        return 
+        return
       case 1:
         return
       case 2:
@@ -74,7 +78,7 @@ class HorizontalLabelPositionBelowStepper extends React.Component {
 
     return (
       <div className={classes.root}>
-        <Stepper activeStep={activeStep} alternativeLabel>
+        <Stepper style={{ borderTopLeftRadius: 25, borderTopRightRadius: 25 }} activeStep={activeStep} alternativeLabel>
           {steps.map(label => {
             return (
               <Step key={label}>
@@ -84,42 +88,45 @@ class HorizontalLabelPositionBelowStepper extends React.Component {
           })}
         </Stepper>
 
-        {this.state.activeStep === 0 && <ShopDetailes  /> }
-        {this.state.activeStep === 1 && <ShopDP /> }
-        {this.state.activeStep === 2 && <ShopDP /> }
+        {this.state.activeStep === 0 && <ShopDetailes />}
+        {this.state.activeStep === 1 && <ShopDP />}
+        {this.state.activeStep === 2 && <ShopDP />}
 
-        <div>
-          {this.state.activeStep === steps.length ? (
-            <div>
-              <Button className={classes.instructions}>
-                All steps completed
-              </Button>
-              <Button onClick={this.handleReset}>Reset</Button>
-            </div>
-          ) : (
-
-            <div>
+        <Card style={{ borderBottomLeftRadius: 25, borderBottomRightRadius: 25  }}>
+          <CardContent >
+            {this.state.activeStep === steps.length ? (
               <div>
-
-                <Button
-                  disabled={activeStep === 0}
-                  onClick={this.handleBack}
-                  className={classes.backButton}
-                >
-                  Back
-                </Button>
-
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={this.handleNext}
-                >
-                  {activeStep === steps.length - 1 ? "Finish" : "Next"}
-                </Button>
+                <Button className={classes.instructions}>
+                  All steps completed
+              </Button>
+                <Button onClick={this.handleReset}>Reset</Button>
               </div>
-            </div>
-          )}
-        </div>
+            ) : (
+
+                <div>
+                  <div>
+
+                    <Button
+                      disabled={activeStep === 0}
+                      onClick={this.handleBack}
+                      className={classes.backButton}
+                    >
+                      Back
+                </Button>
+
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      onClick={this.handleNext}
+                    >
+                      {activeStep === steps.length - 1 ? "Finish" : "Next"}
+                    </Button>
+                  </div>
+                </div>
+              )}
+          </CardContent>
+        </Card>
+
       </div>
     );
   }

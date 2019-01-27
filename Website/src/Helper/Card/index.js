@@ -38,7 +38,7 @@ class RecipeReviewCard extends React.Component {
         <CardContent>
 
           <Input />
-          
+
         </CardContent>
 
         <CardContent>

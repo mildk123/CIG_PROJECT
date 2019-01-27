@@ -22,7 +22,7 @@ export class AddImage extends Component {
   render() {
     return (
 
-      <Card>
+      <Card style={{borderRadius: 0, border: 0}} raised={false}>
         <CardContent>
           <CardContent>
             <h1>Shop Gallery</h1>
@@ -35,14 +35,14 @@ export class AddImage extends Component {
               maxFileSize={10012345}
 
               buttonText='Select images'
-              buttonStyles={{padding: 20, backgroundColor: '#E55145'}}
+              buttonStyles={{padding: 10, backgroundColor: '#E55145',borderRadius: 5}}
 
               label="Max file size: 10mb | Accepted: jpg|png"
-              labelStyles={{fontSize: '18px', backgroundColor : 'black', color : 'white', padding: '5px'}}
+              labelStyles={{fontSize: '13px', backgroundColor : '#565656', color : 'white', padding: '5px'}}
 
               imgExtension={['.jpg', '.png']}
               withPreview={true}
-              fileContainerStyle={{backgroundColor : '#eaeaea',}}
+              fileContainerStyle={{backgroundColor : '#eaeaea'}}
               accept="accept=image/*"
             />
           </CardContent>
