@@ -33,7 +33,7 @@ class DateTimePickers extends React.Component {
           style={{ margin: 10 }}
           label="Opening Time"
           type="time"
-          defaultValue="08:45"
+          defaultValue="00:00"
           className={classes.textField}
           onChange={data => this.onChange('OpeningTime' ,data.target.value)}
         />
@@ -42,7 +42,7 @@ class DateTimePickers extends React.Component {
           style={{ margin: 10 }}
           label="Closing Time"
           type="time"
-          defaultValue="18:30"
+          defaultValue="00:00"
           className={classes.textField}
           onChange={data => this.onChange('ClosingTime' ,data.target.value)}
         />

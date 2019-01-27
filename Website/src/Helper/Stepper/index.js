@@ -14,6 +14,8 @@ import ShopDetailes from "../../Screens/AddShop/AddDetails";
 import ShopLocation from "../../Screens/AddShop/ShopLocation";
 import Finalize from "../../Screens/AddShop/Finalize";
 
+import swal from 'sweetalert'
+
 const styles = theme => ({
   root: {
     width: "90%"
@@ -31,15 +33,54 @@ class HorizontalLabelPositionBelowStepper extends React.Component {
   constructor() {
     super();
     this.state = {
-      activeStep: 0
+      activeStep: 0,
+      Monday: true,
+      Tuesday: true,
+      Wednesday: true,
+      Thursday: true,
+      Friday: true,
+      Saturday: false,
+      Sunday: false,
+      ClosingTime: null,
+      NoOfDays: null,
+      OpeningTime: null, ShopDesc: null,
+      ShopName: null
     };
   }
 
   handleNext = () => {
-    this.setState(state => ({
-      activeStep: state.activeStep + 1
-    }));
+    const {
+      ClosingTime,
+      NoOfDays,
+      OpeningTime,
+      ShopDesc,
+      ShopName,
+    } = this.state;
+
+    if (ClosingTime && NoOfDays && OpeningTime && ShopDesc && ShopName) {
+      this.setState(state => ({
+        activeStep: state.activeStep + 1
+      }));
+        }else {
+          swal('Please fill all the fields')
+    }
+    let myShopDetails = {
+      ClosingTime,
+      NoOfDays,
+      OpeningTime,
+      ShopDesc,
+      ShopName,
+
+    }
+    
   };
+
+  onChangeHandler = (name, payload) => {
+    console.log(name, payload)
+    this.setState({
+      [name]: payload
+    })
+  }
 
   handleBack = () => {
     this.setState(state => ({
@@ -61,7 +102,7 @@ class HorizontalLabelPositionBelowStepper extends React.Component {
     const { classes } = this.props;
     const steps = this.getSteps();
     const { activeStep } = this.state;
-    
+
     return (
       <div className={classes.root}>
         <Stepper style={{ borderTopLeftRadius: 25, borderTopRightRadius: 25 }} activeStep={activeStep} alternativeLabel>
@@ -74,7 +115,7 @@ class HorizontalLabelPositionBelowStepper extends React.Component {
           })}
         </Stepper>
 
-        {this.state.activeStep === 0 && <ShopDetailes />}
+        {this.state.activeStep === 0 && <ShopDetailes changesToStepper={(name, payload) => this.onChangeHandler(name, payload)} />}
         {this.state.activeStep === 1 && <ShopLocation />}
         {this.state.activeStep === 2 && <Finalize />}
 
