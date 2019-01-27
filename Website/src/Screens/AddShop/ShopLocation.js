@@ -9,10 +9,12 @@ class ShopLocation extends Component {
     constructor() {
         super()
         this.state = {
+            myLocation : null
         }
     }
 
     componentWillMount = () => {
+
         navigator.geolocation.getCurrentPosition(position => {
             this.setState({
                 myLocation : {
@@ -21,15 +23,18 @@ class ShopLocation extends Component {
                 }
             })
         })
+
     }
 
     updateCoords = (callback) => {
+        console.log(callback)
         this.setState = ({
-            selectedMarker: {
+            selectedPlace: {
                 latitude: callback.latitude,
                 longitude: callback.longitude
             }
         })
+
     }
 
     render() {
@@ -37,13 +42,13 @@ class ShopLocation extends Component {
 
         return (
             <div>
-                <Card style={{ borderRadius: 0, border: 0, padding: 25 }}>
+                <Card style={{ borderRadius: 0, border: 0, padding: 20 }}>
                     <h1>Shop Location</h1>
 
                     {myLocation && <CardContent style={{ height: '100%' }}>
                         <Map
-                            coords={myLocation}
                             updateCoords={this.updateCoords}
+                            myLocation = {myLocation}
                         />
 
                     </CardContent>}
