@@ -57,22 +57,17 @@ class HorizontalLabelPositionBelowStepper extends React.Component {
       ShopName,
     } = this.state;
 
-    if (ClosingTime && NoOfDays && OpeningTime && ShopDesc && ShopName) {
+    if (!NoOfDays && !ShopDesc && !ShopName) {
+      swal('Please fill all the fields')
+
+    } else if (!ClosingTime && !OpeningTime) {
+      swal('Please select your shop timmings')
+    } else {
       this.setState(state => ({
         activeStep: state.activeStep + 1
       }));
-        }else {
-          swal('Please fill all the fields')
     }
-    let myShopDetails = {
-      ClosingTime,
-      NoOfDays,
-      OpeningTime,
-      ShopDesc,
-      ShopName,
 
-    }
-    
   };
 
   onChangeHandler = (name, payload) => {
