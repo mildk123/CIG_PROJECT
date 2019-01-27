@@ -31,12 +31,18 @@ export class AddImage extends Component {
           <CardContent style={{ padding: 50 }}>
             <ImageUploader
               withIcon={true}
-              buttonText='Choose images'
               onChange={this.onDrop}
               maxFileSize={10012345}
+
+              buttonText='Select images'
+              buttonStyles={{padding: 20, backgroundColor: '#E55145'}}
+
               label="Max file size: 10mb | Accepted: jpg|png"
+              labelStyles={{fontSize: '18px', backgroundColor : 'black', color : 'white', padding: '5px'}}
+
               imgExtension={['.jpg', '.png']}
               withPreview={true}
+              fileContainerStyle={{backgroundColor : '#eaeaea',}}
               accept="accept=image/*"
             />
           </CardContent>
