@@ -7,19 +7,32 @@ import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-map
 class Map extends Component {
     constructor() {
         super()
-        this.state = {}
+        this.state = {
+            selectedPlace: null
+        }
     }
+
     onChange = (searchTerm) => {
         this.setState({
-            searchTerm : searchTerm
+            searchTerm: searchTerm
+        })
+    }
+
+    updateCoords = (callback) => {
+        this.setState({
+            selectedPlace: {
+                latitude: callback.latitude,
+                longitude: callback.longitude
+            }
         })
     }
 
     render() {
-        const { myLocation, updateCoords } = this.props
+        const { myLocation } = this.props
+        console.log(this.state)
         return (
             <div>
-                
+
                 {this.props.myLocation ? <MyMapComponent
                     isMarkerShown
                     googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyDL7SI42Rqai7mHVJ9T8wP480weaQkVnn8&v=3.exp&libraries=geometry,drawing,places"
@@ -27,17 +40,19 @@ class Map extends Component {
                     containerElement={<div style={{ height: `60vh`, }} />}
                     mapElement={<div style={{ height: `100%`, borderRadius: 20 }} />}
 
-                    updateCoords={updateCoords}
                     center={myLocation}
-                    markerLocation={myLocation}
+                    updateCoords={this.updateCoords}
+                    selectedPlace={this.state.selectedPlace}
                 /> : <h1>Loading</h1>}
-                <div style={{position: 'sticky', top: 1, left: 1}}>
+
+                <div style={{ position: 'sticky' }}>
                     <TextField
                         onChange={(event) => this.onChange(event.target.value)}
                         label="Search"
                         margin="dense"
                     />
                 </div>
+
             </div>
         )
     }
@@ -47,7 +62,11 @@ class Map extends Component {
 const MyMapComponent = withScriptjs(withGoogleMap((props) =>
     <GoogleMap
         defaultZoom={15}
-        defaultCenter={{ lat: props.center.latitude, lng: props.center.longitude }}
+        defaultCenter={
+            // props.selectedPlace ? { lat: props.selectedPlace.latitude, lng: props.selectedPlace.longitude } :
+                { lat: props.center.latitude, lng: props.center.longitude }
+
+        }
         onClick={(position) => {
             props.updateCoords({
                 latitude: position.latLng.lat(),
@@ -56,20 +75,17 @@ const MyMapComponent = withScriptjs(withGoogleMap((props) =>
         }
         }
     >
-        {props.isMarkerShown &&
-            <Marker
-                draggable
-                defaultCursor="asdasd"
-                clickable={true}
-                title="Shop Location"
-                label="."
-                defaultPosition={{ lat: props.markerLocation.latitude, lng: props.markerLocation.longitude }}
-                onDragEnd={position => {
-                    props.updateCoords({ latitude: position.latLng.lat(), longitude: position.latLng.lng() })
-                }}
-            >
-            </Marker>
-        }
+        <Marker
+            draggable
+            clickable={true}
+            title="Shop Location"
+            defaultPosition={{ lat: props.center.latitude, lng: props.center.longitude }}
+
+            onDragEnd={position => {
+                props.updateCoords({ latitude: position.latLng.lat(), longitude: position.latLng.lng() })
+            }}
+        >
+        </Marker>
     </GoogleMap>
 ))
 
