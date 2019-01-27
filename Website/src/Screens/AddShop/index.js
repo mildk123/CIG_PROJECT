@@ -21,7 +21,6 @@ export default class AddShop extends Component {
   Drawer = () => {
     this.showDrawer.current.handleClickOpen("left", true);
   };
-  
 
   render() {
     return (

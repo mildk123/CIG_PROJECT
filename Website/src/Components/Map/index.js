@@ -1,12 +1,25 @@
 import React, { Component } from 'react';
+import TextField from '@material-ui/core/TextField';
+
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps"
 
 
 class Map extends Component {
+    constructor() {
+        super()
+        this.state = {}
+    }
+    onChange = (searchTerm) => {
+        this.setState({
+            searchTerm : searchTerm
+        })
+    }
+
     render() {
         const { myLocation, updateCoords } = this.props
         return (
             <div>
+                
                 {this.props.myLocation ? <MyMapComponent
                     isMarkerShown
                     googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyDL7SI42Rqai7mHVJ9T8wP480weaQkVnn8&v=3.exp&libraries=geometry,drawing,places"
@@ -17,9 +30,14 @@ class Map extends Component {
                     updateCoords={updateCoords}
                     center={myLocation}
                     markerLocation={myLocation}
-                /> : <h1>Loading</h1>
-
-                }
+                /> : <h1>Loading</h1>}
+                <div style={{position: 'sticky', top: 1, left: 1}}>
+                    <TextField
+                        onChange={(event) => this.onChange(event.target.value)}
+                        label="Search"
+                        margin="dense"
+                    />
+                </div>
             </div>
         )
     }
