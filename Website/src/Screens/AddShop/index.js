@@ -34,7 +34,6 @@ export default class AddProducts extends Component {
         
         <div style={{paddingInlineStart: '8%', paddingBlockStart: '3%', textAlign: 'center'}}>
           <Stepper />
-        
         </div>
 
         <div />

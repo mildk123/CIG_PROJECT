@@ -1,24 +1,14 @@
 import React from "react";
-import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
 
 import Card from "@material-ui/core/Card";
-
 import CardContent from "@material-ui/core/CardContent";
 
 import Input from "../Input";
 import DateAndTime from "../../Helper/DateAndTime";
-
 import WhichDays from '../CheckBoxes'
 
-const styles = theme => ({
-  card: {
-    maxWidth: 1280,
-    padding: 25
-  }
-});
 
-class RecipeReviewCard extends React.Component {
+class DetailsCard extends React.Component {
   state = { expanded: false };
 
   handleExpandClick = () => {
@@ -30,10 +20,10 @@ class RecipeReviewCard extends React.Component {
   }
 
   render() {
-    const { classes } = this.props;
-
     return (
-      <Card className={classes.card}>
+      <Card style={{
+        borderRadius: 0, border: 0, padding: 25
+      }}>
         <h1>{this.props.cardTitle}</h1>
         <CardContent>
 
@@ -56,8 +46,6 @@ class RecipeReviewCard extends React.Component {
   }
 }
 
-RecipeReviewCard.propTypes = {
-  classes: PropTypes.object.isRequired
-};
 
-export default withStyles(styles)(RecipeReviewCard);
+
+export default DetailsCard;

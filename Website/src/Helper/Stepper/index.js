@@ -11,7 +11,8 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 
 import ShopDetailes from "../../Screens/AddShop/AddDetails";
-import ShopDP from "../../Screens/AddShop/AddImage";
+import ShopLocation from "../../Screens/AddShop/ShopLocation";
+import Finalize from "../../Screens/AddShop/Finalize";
 
 const styles = theme => ({
   root: {
@@ -30,7 +31,7 @@ class HorizontalLabelPositionBelowStepper extends React.Component {
   constructor() {
     super();
     this.state = {
-      activeStep: 1
+      activeStep: 2
     };
   }
 
@@ -53,28 +54,28 @@ class HorizontalLabelPositionBelowStepper extends React.Component {
   };
 
   getSteps = () => {
-    return ["Add Shop Details", "Add Pictures Of Shop", "Finalize"];
+    return ["Add Shop Details", "Shop Location", "Finalize"];
   };
 
-  getStepContent = stepIndex => {
-    switch (stepIndex) {
-      case 0:
-        return
-      case 1:
-        return
-      case 2:
-        return "This is the bit I really care about!";
-      default:
-        return "Unknown stepIndex";
-    }
-  };
+  // getStepContent = stepIndex => {
+  //   switch (stepIndex) {
+  //     case 0:
+  //       return
+  //     case 1:
+  //       return
+  //     case 2:
+  //       return "This is the bit I really care about!";
+  //     default:
+  //       return "Unknown stepIndex";
+  //   }
+  // };
 
   render() {
     const { classes } = this.props;
     const steps = this.getSteps();
     const { activeStep } = this.state;
     // const data = this.getStepContent();
-    this.getStepContent(this.state.activeStep);
+    // this.getStepContent(this.state.activeStep);
 
     return (
       <div className={classes.root}>
@@ -89,10 +90,15 @@ class HorizontalLabelPositionBelowStepper extends React.Component {
         </Stepper>
 
         {this.state.activeStep === 0 && <ShopDetailes />}
-        {this.state.activeStep === 1 && <ShopDP />}
-        {this.state.activeStep === 2 && <ShopDP />}
+        {this.state.activeStep === 1 && <ShopLocation />}
+        {this.state.activeStep === 2 && <Finalize />}
 
-        <Card style={{ borderBottomLeftRadius: 25, borderBottomRightRadius: 25  }}>
+        <Card style={{
+          borderBottomLeftRadius: 25,
+          borderBottomRightRadius: 25,
+          borderTopLeftRadius: 0,
+          borderTopRightRadius: 0
+        }}>
           <CardContent >
             {this.state.activeStep === steps.length ? (
               <div>
@@ -134,3 +140,4 @@ class HorizontalLabelPositionBelowStepper extends React.Component {
 
 
 export default withStyles(styles)(HorizontalLabelPositionBelowStepper);
+
