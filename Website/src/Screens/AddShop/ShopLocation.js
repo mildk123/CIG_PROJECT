@@ -15,8 +15,10 @@ class ShopLocation extends Component {
     componentWillMount = () => {
         navigator.geolocation.getCurrentPosition(position => {
             this.setState({
-                latitude: position.coords.latitude,
-                longitude: position.coords.longitude,
+                myLocation : {
+                    latitude: position.coords.latitude,
+                    longitude: position.coords.longitude,
+                }
             })
         })
     }
@@ -31,17 +33,16 @@ class ShopLocation extends Component {
     }
 
     render() {
-        const { latitude, longitude, selectedMarker } = this.state;
+        const { myLocation } = this.state;
 
         return (
             <div>
                 <Card style={{ borderRadius: 0, border: 0, padding: 25 }}>
                     <h1>Shop Location</h1>
 
-                    {longitude && <CardContent style={{ height: '100%' }}>
+                    {myLocation && <CardContent style={{ height: '100%' }}>
                         <Map
-                            coords={{ latitude, longitude }}
-                            center={{ latitude, longitude }}
+                            coords={myLocation}
                             updateCoords={this.updateCoords}
                         />
 
