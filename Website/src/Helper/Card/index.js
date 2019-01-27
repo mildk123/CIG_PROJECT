@@ -8,15 +8,24 @@ import DateAndTime from "../../Helper/DateAndTime";
 import WhichDays from '../CheckBoxes'
 
 
+import { connect } from 'react-redux';
+import { storeShopDetails } from '../../Redux/Actions/shopAction'
+
 class DetailsCard extends React.Component {
-  state = { expanded: false };
+  constructor() {
+    super()
+    this.state = {
+      expanded: false
+    };
+  }
 
   handleExpandClick = () => {
     this.setState(state => ({ expanded: !state.expanded }));
   };
 
-  handleChoice = (resp) => {
-    console.log('response on card ', resp)
+
+  onChangeHandler = (name, payload) => {
+    console.log(name, payload)
   }
 
   render() {
@@ -27,18 +36,20 @@ class DetailsCard extends React.Component {
         <h1>{this.props.cardTitle}</h1>
         <CardContent>
 
-          <Input />
+          <Input onChangeHandler={(name, payload) => this.onChangeHandler(name, payload)} />
 
         </CardContent>
 
         <CardContent>
 
-          <DateAndTime handleChoice={this.handleChoice} />
+          <DateAndTime
+            onChangeHandler={(name, payload) => this.onChangeHandler(name, payload)}
+          />
 
         </CardContent>
         <CardContent>
 
-          <WhichDays />
+          <WhichDays onChangeHandler={(name, payload) => this.onChangeHandler(name, payload)} />
 
         </CardContent>
       </Card>
@@ -46,6 +57,18 @@ class DetailsCard extends React.Component {
   }
 }
 
+const mapStateToProps = (state, props) => {
+  return {
+    state
+  };
+};
+// 
+const mapDispatchToProps = {
+  onStoreShopDetails: storeShopDetails,
+};
+// 
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(DetailsCard);
 
-
-export default DetailsCard;

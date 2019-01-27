@@ -5,6 +5,10 @@ import CardContent from "@material-ui/core/CardContent";
 
 import Map from '../../Components/Map'
 
+import { connect } from 'react-redux';
+
+import { storeMapDetails } from '../../Redux/Actions/shopAction'
+
 class ShopLocation extends Component {
     constructor() {
         super()
@@ -46,4 +50,18 @@ class ShopLocation extends Component {
     }
 }
 
-export default ShopLocation
+// export default ShopLocation
+const mapStateToProps = (state, props) => {
+    return {
+      state
+    };
+  };
+  // 
+  const mapDispatchToProps = {
+    onStoreMapDetails: storeMapDetails,
+  };
+  // 
+  export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(ShopLocation);

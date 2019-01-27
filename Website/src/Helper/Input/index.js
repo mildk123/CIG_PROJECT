@@ -25,6 +25,7 @@ class ComposedTextField extends React.Component {
   }
 
   handleChange = (name, event) => {
+    this.props.onChangeHandler(name, event.target.value)
     this.setState({ [name]: event.target.value });
   };
 

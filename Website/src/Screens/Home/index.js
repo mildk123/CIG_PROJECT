@@ -12,9 +12,9 @@ import NavBar from "../../Helper/NavBar/";
 // SweetAlert
 // import swal from 'sweetalert'
 
-import { updateUser } from "../../Redux/Actions/authAction";
-import { CurrentUserIndex } from "../../Redux/Actions/meetingAction";
-import { connect } from "react-redux";
+// import { updateUser } from "../../Redux/Actions/authAction";
+// import { CurrentUserIndex } from "../../Redux/Actions/meetingAction";
+// import { connect } from "react-redux";
 
 // import firebase from '../../Config/firebase'
 // const database = firebase.database().ref();
@@ -49,18 +49,5 @@ class Home extends Component {
   }
 }
 
-const mapStateToProps = (state, props) => {
-  return {
-    state
-  };
-};
 
-const mapDispatchToProps = {
-  onUpdateUser: updateUser,
-  onCurrentUserIndex: CurrentUserIndex
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Home);
+export default Home;

@@ -1,10 +1,8 @@
 import { combineReducers } from 'redux'
 import authReducer from './Reducers/authReducer';
-import meetingReducer from './Reducers/meetingReducer'
-import mapReducer from './Reducers/mapReducer'
+import shopReducer from './Reducers/shopReducer';
 
 export default combineReducers({
     authReducer,
-    meetingReducer,
-    mapReducer
+    shopReducer
 })

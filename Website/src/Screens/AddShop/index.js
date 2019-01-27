@@ -10,6 +10,7 @@ import Drawer from "../../Helper/Drawer";
 import NavBar from "../../Helper/NavBar/";
 import Stepper from '../../Helper/Stepper'
 
+
 export default class AddShop extends Component {
   constructor(props) {
     super(props);
@@ -42,19 +43,4 @@ export default class AddShop extends Component {
   }
 }
 
-// const mapStateToProps = (state, props) => {
-//   return {
-//     state
-//   };
-// };
-
-// const mapDispatchToProps = {
-//   onUpdateUser: updateUser,
-//   onCurrentUserIndex: CurrentUserIndex
-// };
-
-// export default connect(
-//   mapStateToProps,
-//   mapDispatchToProps
-// )(AddShop);
 

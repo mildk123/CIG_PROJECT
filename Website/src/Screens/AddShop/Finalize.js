@@ -3,19 +3,21 @@ import React, { Component } from 'react'
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 
-export class Finalize extends Component {
+import { connect } from 'react-redux';
+
+class Finalize extends Component {
   constructor(props) {
     super(props);
-    this.state = { 
-      pictures: [] 
+    this.state = {
+      pictures: []
     };
   }
 
- 
+
   render() {
     return (
 
-      <Card style={{borderRadius: 0, border: 0}} raised={false}>
+      <Card style={{ borderRadius: 0, border: 0 }} raised={false}>
         <CardContent>
           <CardContent>
             <h1>Finalize</h1>
@@ -33,4 +35,16 @@ export class Finalize extends Component {
   }
 }
 
-export default Finalize;
+const mapStateToProps = (state, props) => {
+  return {
+    state
+  };
+};
+// 
+const mapDispatchToProps = {
+};
+// 
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Finalize);

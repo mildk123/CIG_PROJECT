@@ -21,12 +21,8 @@ class DateTimePickers extends React.Component {
     this.state = {};
   }
 
-  handleChoice = (resp) => {
-    this.props.handleChoice(resp)
-  }
-
-  onChange = data => {
-    console.log("time", data);
+  onChange = (name, payload) => {
+    this.props.onChangeHandler(name, payload)
   };
 
   render() {
@@ -39,7 +35,7 @@ class DateTimePickers extends React.Component {
           type="time"
           defaultValue="08:45"
           className={classes.textField}
-          onChange={data => this.onChange(data.target.value)}
+          onChange={data => this.onChange('Opening Time' ,data.target.value)}
         />
 
         <TextField
@@ -48,10 +44,10 @@ class DateTimePickers extends React.Component {
           type="time"
           defaultValue="18:30"
           className={classes.textField}
-          onChange={data => this.onChange(data.target.value)}
+          onChange={data => this.onChange('Closing Time' ,data.target.value)}
         />
 
-        <DropDown handleChoice={this.handleChoice} />
+        <DropDown handleChoice={data => this.onChange('No. of Days' , data)} />
       </form>
     );
   }

@@ -31,7 +31,7 @@ class HorizontalLabelPositionBelowStepper extends React.Component {
   constructor() {
     super();
     this.state = {
-      activeStep: 1
+      activeStep: 0
     };
   }
 
@@ -57,26 +57,11 @@ class HorizontalLabelPositionBelowStepper extends React.Component {
     return ["Add Shop Details", "Shop Location", "Finalize"];
   };
 
-  // getStepContent = stepIndex => {
-  //   switch (stepIndex) {
-  //     case 0:
-  //       return
-  //     case 1:
-  //       return
-  //     case 2:
-  //       return "This is the bit I really care about!";
-  //     default:
-  //       return "Unknown stepIndex";
-  //   }
-  // };
-
   render() {
     const { classes } = this.props;
     const steps = this.getSteps();
     const { activeStep } = this.state;
-    // const data = this.getStepContent();
-    // this.getStepContent(this.state.activeStep);
-
+    
     return (
       <div className={classes.root}>
         <Stepper style={{ borderTopLeftRadius: 25, borderTopRightRadius: 25 }} activeStep={activeStep} alternativeLabel>
