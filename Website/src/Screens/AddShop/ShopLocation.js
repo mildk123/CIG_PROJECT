@@ -12,20 +12,13 @@ import { storeMapDetails } from '../../Redux/Actions/shopAction'
 class ShopLocation extends Component {
     constructor() {
         super()
-        this.state = {
-            myLocation: null,
-        }
-    }
+        this.state = {}
+   }
 
-    componentWillMount = () => {
-
-        navigator.geolocation.getCurrentPosition(position => {
-            this.setState({
-                myLocation: {
-                    latitude: position.coords.latitude,
-                    longitude: position.coords.longitude,
-                }
-            })
+    getloc = (callback) => {
+        this.props.getLocation({
+            latitude: callback.latitude,
+            longitude: callback.longitude
         })
 
     }
@@ -38,12 +31,12 @@ class ShopLocation extends Component {
                 <Card style={{ borderRadius: 0, border: 0, padding: 20 }}>
                     <h1>Shop Location</h1>
 
-                    {myLocation && <CardContent style={{ height: '100%' }}>
+                    <CardContent style={{ height: '100%' }}>
                         <Map
-                            myLocation={myLocation}
+                            getloc={(callback) => this.getloc(callback)}
                         />
 
-                    </CardContent>}
+                    </CardContent>
 
                 </Card>      </div>
         )
@@ -53,15 +46,15 @@ class ShopLocation extends Component {
 // export default ShopLocation
 const mapStateToProps = (state, props) => {
     return {
-      state
+        state
     };
-  };
-  // 
-  const mapDispatchToProps = {
+};
+// 
+const mapDispatchToProps = {
     onStoreMapDetails: storeMapDetails,
-  };
-  // 
-  export default connect(
+};
+// 
+export default connect(
     mapStateToProps,
     mapDispatchToProps
-  )(ShopLocation);
+)(ShopLocation);

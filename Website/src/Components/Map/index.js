@@ -10,6 +10,20 @@ class Map extends Component {
         this.state = {
             selectedPlace: null
         }
+        this.getLocation()
+    }
+
+
+    getLocation = () => {
+        navigator.geolocation.getCurrentPosition(position => {
+            this.setState({
+                myLocation: {
+                    latitude: position.coords.latitude,
+                    longitude: position.coords.longitude,
+                }
+            })
+        })
+
     }
 
     onChange = (searchTerm) => {
@@ -19,8 +33,9 @@ class Map extends Component {
     }
 
     updateCoords = (callback) => {
+        this.props.getloc(callback)
         this.setState({
-            selectedPlace: {
+            updated: {
                 latitude: callback.latitude,
                 longitude: callback.longitude
             }
@@ -28,12 +43,11 @@ class Map extends Component {
     }
 
     render() {
-        const { myLocation } = this.props
-        console.log(this.state)
+        const { myLocation, updated } = this.state
         return (
             <div>
 
-                {this.props.myLocation ? <MyMapComponent
+                {myLocation ? <MyMapComponent
                     isMarkerShown
                     googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyDL7SI42Rqai7mHVJ9T8wP480weaQkVnn8&v=3.exp&libraries=geometry,drawing,places"
                     loadingElement={<div style={{ height: `100%` }} />}
@@ -41,8 +55,8 @@ class Map extends Component {
                     mapElement={<div style={{ height: `100%`, borderRadius: 20 }} />}
 
                     center={myLocation}
-                    updateCoords={this.updateCoords}
-                    selectedPlace={this.state.selectedPlace}
+                    updateCoords={(callback) => this.updateCoords(callback)}
+                    updated={updated}
                 /> : <h1>Loading</h1>}
 
                 <div style={{ position: 'sticky' }}>
@@ -62,30 +76,31 @@ class Map extends Component {
 const MyMapComponent = withScriptjs(withGoogleMap((props) =>
     <GoogleMap
         defaultZoom={15}
-        defaultCenter={
-            // props.selectedPlace ? { lat: props.selectedPlace.latitude, lng: props.selectedPlace.longitude } :
-                { lat: props.center.latitude, lng: props.center.longitude }
-
-        }
+        defaultCenter={{ lat: props.center.latitude, lng: props.center.longitude }}
         onClick={(position) => {
             props.updateCoords({
                 latitude: position.latLng.lat(),
                 longitude: position.latLng.lng()
             })
         }
+
         }
     >
         <Marker
             draggable
             clickable={true}
             title="Shop Location"
-            defaultPosition={{ lat: props.center.latitude, lng: props.center.longitude }}
+            position={props.updated ?
+                { lat: props.updated.latitude, lng: props.updated.longitude }
+                : {
+                    lat: props.center.latitude, lng: props.center.longitude
+                }
+            }
 
             onDragEnd={position => {
                 props.updateCoords({ latitude: position.latLng.lat(), longitude: position.latLng.lng() })
             }}
-        >
-        </Marker>
+        />
     </GoogleMap>
 ))
 

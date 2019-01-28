@@ -33,7 +33,7 @@ class HorizontalLabelPositionBelowStepper extends React.Component {
   constructor() {
     super();
     this.state = {
-      activeStep: 0,
+      activeStep: 1,
       Monday: true,
       Tuesday: true,
       Wednesday: true,
@@ -50,6 +50,7 @@ class HorizontalLabelPositionBelowStepper extends React.Component {
 
   handleNext = () => {
     const {
+      activeStep,
       ClosingTime,
       NoOfDays,
       OpeningTime,
@@ -57,21 +58,33 @@ class HorizontalLabelPositionBelowStepper extends React.Component {
       ShopName,
     } = this.state;
 
-    if (!NoOfDays && !ShopDesc && !ShopName) {
-      swal('Please fill all the fields')
+    if (activeStep === 0) {
+      if (!NoOfDays && !ShopDesc && !ShopName) {
+        swal('Please fill all the fields')
 
-    } else if (!ClosingTime && !OpeningTime) {
-      swal('Please select your shop timmings')
-    } else {
+      } else if (!ClosingTime && !OpeningTime) {
+        swal('Please select your shop timmings')
+      } else {
+        // All the data from ShopDetails is saved in state!
+        this.setState(state => ({
+          activeStep: state.activeStep + 1
+        }));
+      }
+    }else{
       this.setState(state => ({
         activeStep: state.activeStep + 1
-      }));
+      }))
     }
 
-  };
+  }
+
+  getLocation = (callback) => {
+    this.setState({
+      ShopLocation: callback
+    })
+  }
 
   onChangeHandler = (name, payload) => {
-    console.log(name, payload)
     this.setState({
       [name]: payload
     })
@@ -111,7 +124,7 @@ class HorizontalLabelPositionBelowStepper extends React.Component {
         </Stepper>
 
         {this.state.activeStep === 0 && <ShopDetailes changesToStepper={(name, payload) => this.onChangeHandler(name, payload)} />}
-        {this.state.activeStep === 1 && <ShopLocation />}
+        {this.state.activeStep === 1 && <ShopLocation getLocation={(callback) => this.getLocation(callback)} />}
         {this.state.activeStep === 2 && <Finalize />}
 
         <Card style={{
