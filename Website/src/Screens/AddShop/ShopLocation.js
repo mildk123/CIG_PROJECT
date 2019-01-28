@@ -15,7 +15,7 @@ class ShopLocation extends Component {
         this.state = {}
    }
 
-    getloc = (callback) => {
+    getloc = (callback) => {       
         this.props.getLocation({
             latitude: callback.latitude,
             longitude: callback.longitude
@@ -24,8 +24,6 @@ class ShopLocation extends Component {
     }
 
     render() {
-        const { myLocation } = this.state;
-
         return (
             <div>
                 <Card style={{ borderRadius: 0, border: 0, padding: 20 }}>

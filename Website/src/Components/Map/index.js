@@ -21,7 +21,8 @@ class Map extends Component {
                     latitude: position.coords.latitude,
                     longitude: position.coords.longitude,
                 }
-            })
+            }, () => this.props.getloc(position.coords)
+            )
         })
 
     }
