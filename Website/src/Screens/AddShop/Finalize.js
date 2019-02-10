@@ -25,7 +25,7 @@ class Finalize extends Component {
 
           <CardContent style={{ padding: 50 }}>
 
-            <h1>asdasds</h1>
+            
           </CardContent>
         </CardContent>
 

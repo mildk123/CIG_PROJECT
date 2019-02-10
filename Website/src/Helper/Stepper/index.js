@@ -33,7 +33,7 @@ class HorizontalLabelPositionBelowStepper extends React.Component {
   constructor() {
     super();
     this.state = {
-      activeStep: 1,
+      activeStep: 2,
       Monday: true,
       Tuesday: true,
       Wednesday: true,
@@ -103,8 +103,13 @@ class HorizontalLabelPositionBelowStepper extends React.Component {
   };
 
   getSteps = () => {
-    return ["Add Shop Details", "Shop Location", "Finalize"];
+    return ["Add Shop Details", "Shop Location"];
   };
+
+  CompletedSteps = () => {
+    console.log(this.state)
+    console.log('12311 21312',this.props)
+  }
 
   render() {
     const { classes } = this.props;
@@ -125,7 +130,7 @@ class HorizontalLabelPositionBelowStepper extends React.Component {
 
         {this.state.activeStep === 0 && <ShopDetailes changesToStepper={(name, payload) => this.onChangeHandler(name, payload)} />}
         {this.state.activeStep === 1 && <ShopLocation getLocation={(callback) => this.getLocation(callback)} />}
-        {this.state.activeStep === 2 && <Finalize />}
+        {/* {this.state.activeStep === 2 && <Finalize />} */}
 
         <Card style={{
           borderBottomLeftRadius: 25,
@@ -136,7 +141,12 @@ class HorizontalLabelPositionBelowStepper extends React.Component {
           <CardContent >
             {this.state.activeStep === steps.length ? (
               <div>
-                <Button className={classes.instructions}>
+                <div style={{padding: '5%'}}>
+                  <img src={require('../../Assetts/site-Content/gTick.png')}  alt="ALL STEPS DONE." style={{
+                    width: '25%'
+                  }} />
+                </div>
+                <Button color="secondary" variant="contained" onClick={() => this.CompletedSteps()} className={classes.instructions}>
                   All steps completed
               </Button>
                 <Button onClick={this.handleReset}>Reset</Button>
