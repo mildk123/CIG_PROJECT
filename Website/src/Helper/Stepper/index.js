@@ -29,7 +29,7 @@ const styles = theme => ({
   }
 });
 
-class HorizontalLabelPositionBelowStepper extends React.Component {
+class StepperThing extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -70,7 +70,7 @@ class HorizontalLabelPositionBelowStepper extends React.Component {
           activeStep: state.activeStep + 1
         }));
       }
-    }else{
+    } else {
       this.setState(state => ({
         activeStep: state.activeStep + 1
       }))
@@ -108,7 +108,7 @@ class HorizontalLabelPositionBelowStepper extends React.Component {
 
   CompletedSteps = () => {
     console.log(this.state)
-    console.log('12311 21312',this.props)
+    console.log('12311 21312', this.props)
   }
 
   render() {
@@ -141,15 +141,15 @@ class HorizontalLabelPositionBelowStepper extends React.Component {
           <CardContent >
             {this.state.activeStep === steps.length ? (
               <div>
-                <div style={{padding: '5%'}}>
-                  <img src={require('../../Assetts/site-Content/gTick.png')}  alt="ALL STEPS DONE." style={{
+                <div style={{ padding: '5%' }}>
+                  <img src={require('../../Assetts/site-Content/gTick.png')} alt="ALL STEPS DONE." style={{
                     width: '25%'
                   }} />
                 </div>
+                <Button style={{margin: '2%'}} variant='raised' color="primary" onClick={this.handleReset}>Reset</Button>
                 <Button color="secondary" variant="contained" onClick={() => this.CompletedSteps()} className={classes.instructions}>
                   All steps completed
               </Button>
-                <Button onClick={this.handleReset}>Reset</Button>
               </div>
             ) : (
 
@@ -183,5 +183,5 @@ class HorizontalLabelPositionBelowStepper extends React.Component {
 }
 
 
-export default withStyles(styles)(HorizontalLabelPositionBelowStepper);
+export default withStyles(styles)(StepperThing);
 
